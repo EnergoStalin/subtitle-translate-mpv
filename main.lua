@@ -18,7 +18,7 @@ mp.register_script_message("enable-sub-translator", function ()
 end)
 
 mp.register_script_message("disable-sub-translator", function ()
-	mp.unobserve_property(on_sub_changed)
+	mp.unobserve_property(events.on_sub_changed)
 	mp.set_property('sub-visibility', 'yes')
 	overlay:remove()
 	running = false
