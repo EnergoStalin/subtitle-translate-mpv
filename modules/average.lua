@@ -2,7 +2,6 @@ local avg = {
     avg = -0.5,
     count = 1,
     last = 0,
-    flag = 0,
     measure = 0
 }
 
