@@ -13,14 +13,12 @@ local function get_translation(value)
 		opts.text_key, value
 	}
 
-	mp.msg.debug(table.concat(args, ' '))
 	local data = cp1251.cp1251_utf8(utils.subprocess({
 		args = args,
 		capture_stdout = true,
 		playback_only = false
 	}).stdout)
 	if data == nil then return end
-	mp.msg.debug('src:len(' .. value:len() .. ') data:len('.. data:len() .. ')')
 
 	return string.sub(data, 0, #data - 2)
 end

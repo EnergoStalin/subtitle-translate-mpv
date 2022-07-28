@@ -22,7 +22,6 @@ function module.on_sub_changed(_, value)
 	local tick = avg:tick()
 
 	mp.set_property('sub-delay', tick)
-	mp.msg.info('sub-delay ' .. tick)
 
 	overlay.data = '{\\a2}{\\fscx50\\fscy50}' .. value .. '\n{\\a2}' .. translation
 	overlay:update()
