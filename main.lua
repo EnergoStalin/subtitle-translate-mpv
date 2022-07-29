@@ -5,7 +5,7 @@ local events = require 'events'
 --- Run guard
 local running = false
 
-mp.set_property('sub-delay', 0.5)
+mp.set_property('sub-delay', -0.5)
 
 local overlay = mp.create_osd_overlay('ass-events')
 events.display(overlay)

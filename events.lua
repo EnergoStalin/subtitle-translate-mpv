@@ -1,6 +1,7 @@
 local mp = require 'mp'
+local options = require 'options'
 local average = require 'modules.average'(-0.5)
-local translator = require 'translate'(require 'options', require 'modules.encodings.cp1251')
+local translator = require ('modules.translators.' .. options.translator)(options.from, options.to)
 
 local module = {
 	overlay = nil

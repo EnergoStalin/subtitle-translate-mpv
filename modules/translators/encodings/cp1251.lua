@@ -21,7 +21,7 @@ local nmdc =
 ---comment
 ---@param s string
 ---@return string
-function cp1251.from_utf8(s)
+function cp1251.to_utf8(s)
 	local r, b = '', 0
 	for i = 1, s and s:len() or 0 do
 		b = s:byte(i)
