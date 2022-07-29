@@ -1,5 +1,3 @@
-if cp1251 then return end
-
 local cp1251=
 {
 	[128]='\208\130',[129]='\208\131',[130]='\226\128\154',[131]='\209\147',[132]='\226\128\158',[133]='\226\128\166',
@@ -23,7 +21,7 @@ local nmdc =
 ---comment
 ---@param s string
 ---@return string
-function cp1251.cp1251_utf8(s)
+function cp1251.from_utf8(s)
 	local r, b = '', 0
 	for i = 1, s and s:len() or 0 do
 		b = s:byte(i)

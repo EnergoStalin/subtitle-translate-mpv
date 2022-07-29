@@ -2,6 +2,7 @@ local mp = require 'mp'
 local clip = require 'clipboard'
 local events = require 'events'
 
+--- Run guard
 local running = false
 
 mp.set_property('sub-delay', 0.5)

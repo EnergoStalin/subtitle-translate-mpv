@@ -1,26 +1,28 @@
-local opts = require 'options'
-local cp1251 = require 'modules.encodings.cp1251'
 local utils = require 'mp.utils'
-local mp = require 'mp'
 
----@param value string
----@return string | nil
-local function get_translation(value)
-	local args = {
-		opts.translation_provider,
-		opts.from_key, opts.from,
-		opts.to_key, opts.to,
-		opts.text_key, value
-	}
+return function (opts, codepage)
+	local translator = {}
+	if codepage.from_utf8 == nil then error("must implement codepage.from_utf8") end
 
-	local data = cp1251.cp1251_utf8(utils.subprocess({
-		args = args,
-		capture_stdout = true,
-		playback_only = false
-	}).stdout)
-	if data == nil then return end
+	---@param value string
+	---@return string | nil
+	function translator.translate(value)
+		local args = {
+			opts.translation_provider,
+			opts.from_key, opts.from,
+			opts.to_key, opts.to,
+			opts.text_key, value
+		}
 
-	return string.sub(data, 0, #data - 2)
+		local data = codepage.from_utf8(utils.subprocess({
+			args = args,
+			capture_stdout = true,
+			playback_only = false
+		}).stdout)
+		if data == nil then return end
+
+		return string.sub(data, 0, #data - 2)
+	end
+
+	return translator
 end
-
-return get_translation

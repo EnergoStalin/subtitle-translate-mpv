@@ -1,32 +1,37 @@
-local avg = require 'modules.average'
-local translator = require 'translate'
+local mp = require 'mp'
+local average = require 'modules.average'(-0.5)
+local translator = require 'translate'(require 'options', require 'modules.encodings.cp1251')
 
-local overlay = nil
-local module = {}
+local module = {
+	overlay = nil
+}
 
-avg.measure = mp.get_time
+average.measure = mp.get_time
 
+---Callback for subtitle change
+---@param _ any
+---@param value string
 function module.on_sub_changed(_, value)
-    if overlay == nil then return end
+    if module.overlay == nil then return end
 
 	if value == nil or value == '' then
-		overlay.hidden = true
-		overlay:update()
+		module.overlay.hidden = true
+		module.overlay:update()
 		return
 	end
-	overlay.hidden = false
+	module.overlay.hidden = false
 	value = value:gsub('\n', ' ')
 
-	avg:tick()
-	local translation = translator(value)
-	local tick = avg:tick()
+	average:tick()
+	local translation = translator.translate(value)
+	local tick = average:tick()
 
 	mp.set_property('sub-delay', tick)
 
-	overlay.data = '{\\a2}{\\fscx50\\fscy50}' .. value .. '\n{\\a2}' .. translation
-	overlay:update()
+	module.overlay.data = '{\\a2}{\\fscx50\\fscy50}' .. value .. '\n{\\a2}' .. translation
+	module.overlay:update()
 end
 
-function module.display(over) overlay = over end
+function module.display(over) module.overlay = over end
 
 return module

@@ -1,22 +1,27 @@
-local avg = {
-    avg = -0.5,
-    count = 1,
-    last = 0,
-    measure = nil
-}
+---Constructor for average value generator
+---@param initial number
+---@return table
+return function (initial)
+    local average = {
+        avg = initial,
+        count = 1,
+        last = 0,
+        measure = nil
+    }
 
-function avg.tick()
-    if avg.measure == nil then return end
-
-    if avg.last ~= 0 then
-        avg.avg = avg.avg + avg.last - avg.measure()
-        avg.count = avg.count + 1
-        avg.last = 0
-    else
-        avg.last = avg.measure()
+    function average:tick()
+        if self.measure == nil then return end
+    
+        if self.last ~= 0 then
+            self.avg = self.avg + self.last - self.measure()
+            self.count = self.count + 1
+            self.last = 0
+        else
+            self.last = self.measure()
+        end
+    
+        return self.avg / self.count
     end
 
-    return avg.avg / avg.count
+    return average
 end
-
-return avg
