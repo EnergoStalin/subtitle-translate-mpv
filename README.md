@@ -18,3 +18,9 @@ autoEnableTranslator = false
 fromLang = "en"
 toLang = "ru"
 ```
+## Optional but for now required dependencies
+CrowTranslate need for translate text see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
+Avalible via
+```powershell
+winget install --id CrowTranslate.CrowTranslate
+```
