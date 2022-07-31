@@ -26,7 +26,7 @@ local function register()
 	running = true
 end
 local function unregister()
-	if !running then return end
+	if not running then return end
 
 	mp.unobserve_property(translate.on_sub_changed)
 	mp.set_property('sub-visibility', 'yes')
