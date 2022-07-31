@@ -1,5 +1,4 @@
 local mp = require 'mp'
-local options = require 'options'
 
 
 return function()
