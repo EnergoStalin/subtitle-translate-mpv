@@ -1,30 +1,62 @@
 local mp = require 'mp'
-local clip = require 'clipboard'
-local events = require 'events'
+local opt = require 'mp.options'
 
 --- Run guard
 local running = false
+local o = {
+	defaultDelay = -0.5,
+	translator = "crow",
+	autoEnableTranslator = false,
+	fromLang = "en",
+	toLang = "ru",
+}
+opt.read_options(o, "subutil")
 
-mp.set_property('sub-delay', -0.5)
+local translator = require ('modules.translators.' .. o.translator)(o.fromLang, o.toLang)
+local overlay = require 'overlay'()
+local translate = require 'translate'(translator, overlay)
 
-local overlay = mp.create_osd_overlay('ass-events')
-events.display(overlay)
-
-mp.register_script_message("enable-sub-translator", function ()
+local function register()
 	if running then return end
 
-	mp.observe_property('sub-text', 'string', events.on_sub_changed)
+	mp.set_property('sub-delay', o.defaultDelay)
+	mp.observe_property('sub-text', 'string', translate.on_sub_changed)
 	mp.set_property('sub-visibility', 'no')
-	running = true
-end)
 
-mp.register_script_message("disable-sub-translator", function ()
-	mp.unobserve_property(events.on_sub_changed)
+	running = true
+end
+local function unregister()
+	if !running then return end
+
+	mp.unobserve_property(translate.on_sub_changed)
 	mp.set_property('sub-visibility', 'yes')
 	overlay:remove()
-	running = false
-end)
 
-mp.register_script_message("copy-sub-to-clipboard", function ()
-	clip.set(mp.get_property('sub-text'))
-end)
+	running = false
+end
+local function autoEnable()
+	local track_list = mp.get_property_native("track-list", {})
+	local enable = true
+	for _,track in ipairs(track_list) do
+		if not track.lang then track.lang = "und" end
+
+		if track.type == "sub" then
+			if track.lang:find(o.toLang) ~= nil then
+				enable = false
+				break
+			end
+		end
+	end
+	if enable then register()
+	else unregister() end
+end
+
+
+mp.register_script_message("copy-sub-to-clipboard", function () (require 'clipboard').set(mp.get_property('sub-text')) end)
+
+if o.autoEnableTranslator then
+	mp.add_hook('on_preloaded', 25, autoEnable)
+else
+	mp.register_script_message("enable-sub-translator", register)
+	mp.register_script_message("disable-sub-translator", unregister)
+end

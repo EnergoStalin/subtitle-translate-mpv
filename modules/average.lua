@@ -1,13 +1,18 @@
 ---Constructor for average value generator
 ---@param initial number
 ---@return table
-return function (initial)
+return function (initial, measure)
     local average = {
         avg = initial,
         count = 1,
         last = 0,
-        measure = nil
+        measure = measure
     }
+
+    function average:reset()
+        self.count = 1
+        self.last = 0
+    end
 
     function average:tick()
         if self.measure == nil then return end
