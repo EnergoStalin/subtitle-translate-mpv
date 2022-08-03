@@ -5,7 +5,7 @@ local auto = require 'modules.translators.encodings.auto'
 ---@param to string
 ---@return table
 return function (from, to)
-    local codepage = auto(to)
+	local codepage = auto(to)
 	if codepage.to_utf8 == nil then error("must implement codepage.to_utf8") end
 
 	local crow = {}
