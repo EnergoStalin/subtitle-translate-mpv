@@ -54,7 +54,7 @@ mp.register_script_message("copy-sub-to-clipboard", function () (require 'clipbo
 
 if o.autoEnableTranslator then
 	mp.add_hook('on_preloaded', 25, autoEnable)
-else
-	mp.register_script_message("enable-sub-translator", register)
-	mp.register_script_message("disable-sub-translator", unregister)
 end
+
+mp.register_script_message("enable-sub-translator", register)
+mp.register_script_message("disable-sub-translator", unregister)
