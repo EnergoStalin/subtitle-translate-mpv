@@ -38,10 +38,8 @@ local function autoEnable()
 	local track_list = mp.get_property_native("track-list", {})
 	local enable = true
 	for _,track in ipairs(track_list) do
-		if not track.lang then track.lang = "und" end
-
 		if track.type == "sub" then
-			if track.lang:find(o.toLang) ~= nil then
+			if (not track.lang and track.external) or track.lang:find(o.toLang) then
 				enable = false
 				break
 			end
