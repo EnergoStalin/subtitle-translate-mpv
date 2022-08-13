@@ -4,6 +4,10 @@ local mp = require 'mp'
 return function()
 	local overlay = mp.create_osd_overlay('ass-events')
 	local wrap = {}
+	function wrap:remove()
+		overlay:remove()
+	end
+
 	function wrap:hide()
 		overlay.hidden = true
 		overlay:update()
