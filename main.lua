@@ -22,7 +22,6 @@ local function register()
 	mp.set_property('sub-delay', o.defaultDelay)
 	mp.observe_property('sub-text', 'string', translate.on_sub_changed)
 	mp.set_property('sub-visibility', 'no')
-	mp.set_property('sub-delay', o.defaultDelay)
 
 	running = true
 end
