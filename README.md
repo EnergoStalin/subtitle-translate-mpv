@@ -1,4 +1,6 @@
 # SubUtil
+[![wakatime](https://wakatime.com/badge/user/e95ece5f-54ed-4ef2-9ff3-b88a5a8bfc5c/project/ff0b8a46-c4f1-4805-a7a2-096874f3ed18.svg)](https://wakatime.com/badge/user/e95ece5f-54ed-4ef2-9ff3-b88a5a8bfc5c/project/ff0b8a46-c4f1-4805-a7a2-096874f3ed18)
+
 Modular script for auto translating subtitles into multiple languages.
 You can extend it with you favorite translator by contributing one.
 ## Features
