@@ -19,11 +19,11 @@ Avalible options `~~/script-opts/subutil.conf` with default values
 ```conf
 defaultDelay = -0.5
 translator = "crow" # Which script to use as translator(see translators folder in repository)
-translatedOnly = false # Show only primary text
-primaryOriginal = false # Use original text as primary
+translatedOnly = yes # Show only primary text
+primaryOriginal = yes # Use original text as primary
 fromLang = "en"
 toLang = "ru"
-autoEnableTranslator = false
+autoEnableTranslator = yes
 ```
 ## Recommended input.conf
 ```conf
