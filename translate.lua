@@ -21,5 +21,9 @@ return function (translator, overlay)
 		overlay:reveal()
 	end
 
+	function m.reset()
+		avg:reset(mp.get_property('sub-delay', -0.5))
+	end
+
 	return m
 end

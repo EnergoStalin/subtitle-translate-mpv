@@ -12,11 +12,14 @@ return function (from, to)
 	---@param value string
 	---@return string | nil
 	function crow.translate(value)
+		-- Removing '--' due to stupid crow CLI
+		-- Passing value as stdin_data not work on windows
+		local escaped = value:gsub('--', '')
 		local args = {
 			"crow",
 			"-l", from,
 			"-t", to,
-			"-b", value
+			"-b", escaped
 		}
 
 		local data = codepage.to_utf8(utils.subprocess({

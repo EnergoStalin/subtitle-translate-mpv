@@ -5,22 +5,35 @@ You can extend it with you favorite translator by contributing one.
 - Auto enable when `toLang` not match any subtitle stream.
 - Auto correct subtitle offset for comfort watching without delays.
 - Register 3 script messages what you can bind via `~~/input.conf`.
-    - copy-sub-to-clipboard
-    `copy original subtitle text to clipboard via powershell set-clipboard`
+    - Toggle messages
+        - sub-translated-only
+        - sub-primary-original
     - enable-sub-translator
     - disable-sub-translator
+    - sub-to-clipboard
+    `Copy original subtitle text to clipboard via powershell set-clipboard`
 ## Options
-Avalible options `~~/script-opts/subutil.conf`
-```
+Avalible options `~~/script-opts/subutil.conf` with default values
+```conf
 defaultDelay = -0.5
-translator = "crow"
-autoEnableTranslator = false
+translator = "crow" # Which script to use as translator(see translators folder in repository)
+translatedOnly = false # Show only primary text
+primaryOriginal = false # Use original text as primary
 fromLang = "en"
 toLang = "ru"
+autoEnableTranslator = false
+```
+## Recommended input.conf
+```conf
+CTRL+S script-message sub-to-clipboard
+CTRL+t script-message enable-sub-translator
+CTRL+T script-message disable-sub-translator
+ALT+t script-message sub-translated-only
+ALT+o script-message sub-primary-original
 ```
 ## Optional but for now required dependencies
-CrowTranslate need for translate text see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
-Avalible via
+CrowTranslate for translation text see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
+Avalible via windows
 ```powershell
 winget install --id CrowTranslate.CrowTranslate
 ```
