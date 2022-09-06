@@ -9,9 +9,9 @@ return function (initial, measure)
 		measure = measure
 	}
 
-	function average:reset(last, measure)
+	function average:reset(avg, measure)
 		self.count = 1
-		self.last = last
+		self.avg = avg
 		self.measure = measure or self.measure
 	end
 

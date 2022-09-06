@@ -16,12 +16,12 @@ opt.read_options(o, "subutil")
 
 local translator = require ('modules.translators.' .. o.translator)(o.fromLang, o.toLang)
 local overlay = require 'overlay'(o)
-local translate = require 'translate'(translator, overlay)
+local translate = require 'translate'(translator, overlay, o)
 
 local function register()
 	if running then return end
 
-	o.defaultDelay = mp.get_property('sub-delay', o.defaultDelay)
+	o.defaultDelay = mp.get_property('sub-delay', o.defaultDelay) + o.defaultDelay
 
 	mp.set_property('sub-delay', o.defaultDelay)
 	mp.observe_property('sub-text', 'string', translate.on_sub_changed)
