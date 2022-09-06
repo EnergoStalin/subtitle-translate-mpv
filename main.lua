@@ -47,7 +47,7 @@ local function unregister()
 end
 local function autoEnable()
 	local track_list = mp.get_property_native("track-list", {})
-	local enable = true
+	local enable = #track_list ~= 0
 	for _,track in ipairs(track_list) do
 		if track.type == "sub" then
 			if (not track.lang and track.external) or track.lang:find(o.toLang) then
@@ -61,7 +61,7 @@ local function autoEnable()
 end
 
 if o.autoEnableTranslator then
-	mp.add_hook('on_load', 25, autoEnable)
+	mp.add_hook('on_preload', 25, autoEnable)
 end
 
 mp.register_script_message("sub-to-clipboard", function () (require 'clipboard').set(mp.get_property('sub-text')) end)
