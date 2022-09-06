@@ -21,7 +21,11 @@ local translate = require 'translate'(translator, overlay, o)
 local function register()
 	if running then return end
 
-	o.defaultDelay = mp.get_property('sub-delay', o.defaultDelay) + o.defaultDelay
+	-- Enshure sync only once
+	local delay = mp.get_property_number('sub-delay', 0)
+	if delay ~= 0 and delay ~= o.defaultDelay then
+		o.defaultDelay = delay - 0.5
+	end
 
 	mp.set_property('sub-delay', o.defaultDelay)
 	mp.observe_property('sub-text', 'string', translate.on_sub_changed)
