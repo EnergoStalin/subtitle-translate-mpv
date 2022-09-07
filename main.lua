@@ -61,7 +61,7 @@ local function autoEnable()
 end
 
 if o.autoEnableTranslator then
-	mp.add_hook('on_preload', 25, autoEnable)
+	mp.register_event('file-loaded', autoEnable)
 end
 
 mp.register_script_message("sub-to-clipboard", function () (require 'clipboard').set(mp.get_property('sub-text')) end)
