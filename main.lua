@@ -24,10 +24,10 @@ local function register()
 	-- Enshure sync only once
 	local delay = mp.get_property_number('sub-delay', 0)
 	if delay ~= 0 and delay ~= o.defaultDelay then
-		o.defaultDelay = delay - 0.5
+		o.defaultDelay = delay
 	end
 
-	mp.set_property('sub-delay', o.defaultDelay)
+	mp.set_property('sub-delay', o.defaultDelay - 0.5)
 	mp.observe_property('sub-text', 'string', translate.on_sub_changed)
 	mp.set_property('sub-visibility', 'no')
 
