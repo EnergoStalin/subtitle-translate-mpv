@@ -1,8 +1,6 @@
 local mp = require 'mp'
 local opt = require 'mp.options'
 
---- Run guard
-local running = false
 local o = {
 	defaultDelay = -0.5,
 	translator = "crow",
@@ -11,57 +9,24 @@ local o = {
 	primaryOriginal = false,
 	fromLang = "en",
 	toLang = "ru",
+
+	-- Mega Cringe
+	running = false
 }
 opt.read_options(o, "subutil")
 
-local translator = require ('modules.translators.' .. o.translator)(o.fromLang, o.toLang)
 local overlay = require 'overlay'(o)
-local translate = require 'translate'(translator, overlay, o)
+local translator = require 'translate'(
+	require ('modules.translators.' .. o.translator)(o.fromLang, o.toLang),
+	overlay,
+	o
+)
 
-local function register()
-	if running then return end
-
-	-- Enshure sync only once
-	local delay = mp.get_property_number('sub-delay', 0)
-	if delay ~= 0 and delay ~= o.defaultDelay then
-		o.defaultDelay = delay
-	end
-
-	mp.set_property('sub-delay', o.defaultDelay - 0.5)
-	mp.observe_property('sub-text', 'string', translate.on_sub_changed)
-	mp.set_property('sub-visibility', 'no')
-
-	running = true
-	mp.msg.info('Started')
-end
-local function unregister()
-	if not running then return end
-
-	mp.unobserve_property(translate.on_sub_changed)
-	mp.set_property('sub-visibility', 'yes')
-	mp.set_property('sub-delay', o.defaultDelay)
-	overlay:remove()
-
-	running = false
-	mp.msg.info('Stopped')
-end
-local function autoEnable()
-	local track_list = mp.get_property_native("track-list", {})
-	local enable = #track_list ~= 0
-	for _,track in ipairs(track_list) do
-		if track.type == "sub" then
-			if (not track.lang and track.external) or track.lang:find(o.toLang) then
-				enable = false
-				break
-			end
-		end
-	end
-	if enable then register()
-	else unregister() end
-end
+local register = require 'register'(translator, o)
+local unregister = require 'unregister'(translator, o, overlay)
 
 if o.autoEnableTranslator then
-	mp.register_event('file-loaded', autoEnable)
+	mp.register_event('file-loaded', require 'autoEnable'(register, unregister, o))
 end
 
 mp.register_script_message("sub-to-clipboard", function () (require 'clipboard').set(mp.get_property('sub-text')) end)
