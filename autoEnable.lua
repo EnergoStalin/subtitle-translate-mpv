@@ -1,18 +1,11 @@
 local mp = require 'mp'
+local tablelib = require 'tablelib'
 
 return function(register, unregister, options)
 	return function()
-		local track_list = mp.get_property_native("track-list", {})
-		local enable = #track_list ~= 0
-		for _,track in ipairs(track_list) do
-			if track.type == "sub" then
-				if (not track.lang and track.external) or track.lang:find(options.toLang) then
-					enable = false
-					break
-				end
-			end
-		end
-		if enable then register()
+		if #tablelib.filter(mp.get_property_native("track-list", {}), function (track)
+			return track.type == 'sub' and ((track.lang ~= nil and not track.lang:find(options.toLang)) or track.external)
+		end) ~= 0 then register()
 		else unregister() end
 	end
 end
