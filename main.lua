@@ -29,7 +29,6 @@ if o.autoEnableTranslator then
 	mp.register_event('file-loaded', require 'autoEnable'(register, unregister, o))
 end
 
-mp.register_script_message("sub-to-clipboard", function () (require 'clipboard').set(mp.get_property('sub-text')) end)
 mp.register_script_message("sub-translated-only", function() o.translatedOnly = not o.translatedOnly; mp.osd_message('Translated only ' .. tostring(o.translatedOnly)) end)
 mp.register_script_message("sub-primary-original", function() o.primaryOriginal = not o.primaryOriginal; mp.osd_message('Primary original ' .. tostring(o.primaryOriginal)) end)
 mp.register_script_message("enable-sub-translator", register)
