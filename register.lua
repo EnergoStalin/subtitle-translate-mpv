@@ -11,7 +11,9 @@ return function(translate, o)
 		end
 
 		mp.set_property('sub-delay', o.defaultDelay - 0.5)
-		mp.observe_property('sub-text', 'string', translate.on_sub_changed)
+		mp.observe_property('sub-start', 'string', function()
+			translate.on_sub_changed(nil, mp.get_property('sub-text-ass'))
+		end)
 		mp.set_property('sub-visibility', 'no')
 
 		o.running = true

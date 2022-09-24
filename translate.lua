@@ -11,8 +11,16 @@ return function (translator, overlay, options)
 			return
 		end
 
-		value = value:gsub('\n', ' ')
-		local data = translator.translate(value)
+		local ok, data, err = pcall(translator.translate, value)
+		if not ok then
+			mp.msg.error(err.status,
+						 value,
+						 err.stdout,
+						 err.error_message,
+						 err.stderr
+			)
+			return
+		end
 
 		avg:tick()
 		overlay:set_translation(data, value)

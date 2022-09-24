@@ -22,11 +22,15 @@ return function (from, to)
 			"-b", escaped
 		}
 
-		local data = codepage.to_utf8(utils.subprocess({
+		local result = utils.subprocess({
 			args = args,
 			capture_stdout = true,
-			playback_only = false
-		}).stdout)
+			playback_only = true
+		})
+
+		if result.status ~= 0 then error(result) end
+
+		local data = codepage.to_utf8(result.stdout)
 		if data == nil then return end
 
 		return string.sub(data, 0, #data - 2)

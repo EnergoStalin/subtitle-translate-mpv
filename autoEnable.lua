@@ -8,7 +8,6 @@ return function(register, unregister, options)
 		end)
 		if #tablelib.filter(subs, function (track)
 			local val = track.lang ~= nil and track.lang:find(options.toLang)
-			mp.msg.info((track.lang or 'undefined') .. ' ' .. tostring(val))
 			return val
 		end) == 0 and #subs ~= 0 then register()
 		else unregister() end
