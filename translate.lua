@@ -5,7 +5,8 @@ return function (translator, overlay, options)
 	if translator.translate == nil then error("must implement transaltor.translate(text)") end
 	if overlay.set_translation == nil then error("must implement overlay:set_translation(translated, original)") end
 	local m = {}
-	function m.on_sub_changed(_, value)
+	function m.on_sub_changed()
+		local value = mp.get_property('sub-text-ass')
 		if value == nil or value == '' then
 			overlay:hide()
 			return
