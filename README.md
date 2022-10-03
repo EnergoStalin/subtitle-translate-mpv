@@ -6,7 +6,7 @@ You can extend it with you favorite translator by contributing one.
 ## Features
 - Auto enable when `toLang` not match any subtitle stream.
 - Auto correct subtitle offset for comfort watching without delays.
-- Register 3 script messages what you can bind via `~~/input.conf`.
+- Register 4 script messages what you can bind via `~~/input.conf`.
     - Toggle messages
         - sub-translated-only
         - sub-primary-original
@@ -27,7 +27,6 @@ autoEnableTranslator = yes      # When any subitle stream language don't match t
 ```
 ## Recommended input.conf
 ```conf
-CTRL+S script-message sub-to-clipboard
 CTRL+t script-message enable-sub-translator
 CTRL+T script-message disable-sub-translator
 ALT+t script-message sub-translated-only
