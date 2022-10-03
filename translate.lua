@@ -2,8 +2,6 @@ local mp = require 'mp'
 local avg = require 'modules.average'(-0.5, mp.get_time)
 
 return function (translator, overlay, options)
-	if translator.translate == nil then error("must implement transaltor.translate(text)") end
-	if overlay.set_translation == nil then error("must implement overlay:set_translation(translated, original)") end
 	local m = {}
 	function m.on_sub_changed()
 		local value = mp.get_property('sub-text-ass')
@@ -12,14 +10,18 @@ return function (translator, overlay, options)
 			return
 		end
 
+		value = value:gsub('\\N', ' \\N '):gsub('\\n', ' \\n ')
 		local ok, data, err = pcall(translator.translate, value)
 		if not ok then
-			mp.msg.error(err.status,
-						 value,
-						 err.stdout,
-						 err.error_message,
-						 err.stderr
-			)
+			if err ~= nil then
+				mp.msg.error(err.status,
+							value,
+							err.stdout,
+							err.error_message,
+							err.stderr
+				)
+			end
+
 			return
 		end
 
