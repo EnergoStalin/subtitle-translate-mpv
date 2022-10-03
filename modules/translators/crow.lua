@@ -6,7 +6,6 @@ local auto = require 'modules.translators.encodings.auto'
 ---@return table
 return function (from, to)
 	local codepage = auto(to)
-	if codepage.to_utf8 == nil then error("must implement codepage.to_utf8") end
 
 	local crow = {}
 	---@param value string
@@ -31,7 +30,7 @@ return function (from, to)
 		if result.status ~= 0 then error(result) end
 
 		local data = codepage.to_utf8(result.stdout)
-		if data == nil then return end
+		if data == nil then return nil end
 
 		return string.sub(data, 0, #data - 2)
 	end
