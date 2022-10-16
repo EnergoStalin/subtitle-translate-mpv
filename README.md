@@ -15,15 +15,21 @@ You can extend it with you favorite translator by contributing one.
 ## Options
 Avalible options `~~/script-opts/subutil.conf` with default values
 ```conf
-defaultDelay = -0.5             # Initial subtitle delay for translator
-translator = "crow"             # Which script to use as translator(see translators folder in repository)
-translatedOnly = yes            # Show only primary text
-primaryOriginal = yes           # Use original text as primary
-fromLang = "en"                 # Used in translator
-toLang = "ru"                   # Used in translator
-autoEnableTranslator = yes      # When any subitle stream language don't match toLang
-                                # (match performed by lua string.find())
-                                # Or there any external subtitle with unknown language
+# Initial subtitle delay for translator
+defaultDelay=-0.5
+# Which script to use as translator(see translators folder in repository)
+translator=crow
+# Show only primary text
+translatedOnly=yes
+# Use original text as primary
+primaryOriginal=no
+# Used in translator
+fromLang=en
+toLang=ru
+# When any subitle stream language don't match toLang
+# (match performed by lua string.find())
+# Or there any external subtitle with unknown language
+autoEnableTranslator=yes
 ```
 ## Recommended input.conf
 ```conf
