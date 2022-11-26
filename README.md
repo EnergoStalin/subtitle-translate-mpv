@@ -44,7 +44,7 @@ ALT+o script-message sub-primary-original
 ```
 ## Optional but for now required dependencies
 CrowTranslate for translation text see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
-Avalible via windows
+Avalible via winget
 ```powershell
 winget install --id CrowTranslate.CrowTranslate
 ```
