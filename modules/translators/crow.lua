@@ -3,22 +3,21 @@ local auto = require 'modules.translators.encodings.auto'
 
 ---@param from string
 ---@param to string
----@return table
+---@return function
 return function (from, to)
 	local codepage = auto(to)
 
-	local crow = {}
 	---@param value string
 	---@return string | nil
-	function crow.translate(value)
+	return function(value)
 		-- Removing '--' due to stupid crow CLI
 		-- Passing value as stdin_data not work on windows
 		local escaped = value:gsub('--', '')
 		local args = {
-			"crow",
-			"-l", from,
-			"-t", to,
-			"-b", escaped
+			'crow',
+			'-l', from,
+			'-t', to,
+			'-b', escaped
 		}
 
 		local result = utils.subprocess({
@@ -34,6 +33,4 @@ return function (from, to)
 
 		return string.sub(data, 0, #data - 2)
 	end
-
-	return crow
 end

@@ -3,7 +3,7 @@ local tablelib = require 'tablelib'
 
 return function(register, unregister, options)
 	return function()
-		local subs = tablelib.filter(mp.get_property_native("track-list", {}), function (track)
+		local subs = tablelib.filter(mp.get_property_native('track-list', {}), function (track)
 			return track.type == 'sub'
 		end)
 		if #tablelib.filter(subs, function (track)

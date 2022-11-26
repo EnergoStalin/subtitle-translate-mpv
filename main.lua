@@ -3,17 +3,18 @@ local opt = require 'mp.options'
 
 local o = {
 	defaultDelay = -0.5,
-	translator = "crow",
+	translator = 'crow',
 	autoEnableTranslator = false,
 	translatedOnly = false,
 	primaryOriginal = false,
-	fromLang = "en",
-	toLang = "ru",
+	fromLang = 'en',
+    toLang = 'ru',
+	osdFont = 'Arial',
 
 	-- Mega Cringe
 	running = false
 }
-opt.read_options(o, "subutil")
+opt.read_options(o, 'subutil')
 
 local overlay = require 'overlay'(o)
 local translator = require 'translate'(
@@ -29,7 +30,7 @@ if o.autoEnableTranslator then
 	mp.register_event('file-loaded', require 'autoEnable'(register, unregister, o))
 end
 
-mp.register_script_message("sub-translated-only", function() o.translatedOnly = not o.translatedOnly; mp.osd_message('Translated only ' .. tostring(o.translatedOnly)) end)
-mp.register_script_message("sub-primary-original", function() o.primaryOriginal = not o.primaryOriginal; mp.osd_message('Primary original ' .. tostring(o.primaryOriginal)) end)
-mp.register_script_message("enable-sub-translator", register)
-mp.register_script_message("disable-sub-translator", unregister)
+mp.register_script_message('sub-translated-only', function() o.translatedOnly = not o.translatedOnly; mp.osd_message('Translated only ' .. tostring(o.translatedOnly)) end)
+mp.register_script_message('sub-primary-original', function() o.primaryOriginal = not o.primaryOriginal; mp.osd_message('Primary original ' .. tostring(o.primaryOriginal)) end)
+mp.register_script_message('enable-sub-translator', register)
+mp.register_script_message('disable-sub-translator', unregister)

@@ -1,6 +1,8 @@
 # SubUtil
 [![wakatime](https://wakatime.com/badge/user/e95ece5f-54ed-4ef2-9ff3-b88a5a8bfc5c/project/ff0b8a46-c4f1-4805-a7a2-096874f3ed18.svg)](https://wakatime.com/badge/user/e95ece5f-54ed-4ef2-9ff3-b88a5a8bfc5c/project/ff0b8a46-c4f1-4805-a7a2-096874f3ed18)
 
+![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
+
 Modular script for auto translating subtitles on the fly into multiple languages.
 You can extend it with you favorite translator by contributing one.
 ## Features
@@ -26,6 +28,8 @@ primaryOriginal=no
 # Used in translator
 fromLang=en
 toLang=ru
+# Font for showed text
+osdFont=Arial
 # When any subitle stream language don't match toLang
 # (match performed by lua string.find())
 # Or there any external subtitle with unknown language

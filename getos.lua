@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 -- Simple polyfill for os detection
 return function()
     if jit and jit.os and jit.arch then

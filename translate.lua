@@ -1,6 +1,19 @@
 local mp = require 'mp'
 local avg = require 'modules.average'(-0.5, mp.get_time)
 
+local function print_error(err, value)
+	if err ~= nil then
+		mp.msg.error(err.status,
+					value,
+					err.stdout,
+					err.error_message,
+					err.stderr
+        )
+    else
+		mp.msg.error(err)
+	end
+end
+
 return function (translator, overlay, options)
 	local m = {}
 	function m.on_sub_changed()
@@ -11,17 +24,9 @@ return function (translator, overlay, options)
 		end
 
 		value = value:gsub('\\N', ' \\N '):gsub('\\n', ' \\n ')
-		local ok, data, err = pcall(translator.translate, value)
+		local ok, data, err = pcall(translator, value)
 		if not ok then
-			if err ~= nil then
-				mp.msg.error(err.status,
-							value,
-							err.stdout,
-							err.error_message,
-							err.stderr
-				)
-			end
-
+			print_error(err, value)
 			return
 		end
 
