@@ -1,0 +1,17 @@
+{
+  "name": "subutils-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:EnergoStalin/subutils-mpv.git",
+  "author": "EnergoStalin <alex.vipers@mail.ru>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mpv-script": "^0.32.2",
+    "onchange": "^7.1.0"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "mpvnet": "onchange --await-write-finish 1000 -d 2000 -k \"../../scripts/subutils-js/**/*.js\" -- mpvnet.exe --volume=30"
+  },
+  "dependencies": {}
+}
