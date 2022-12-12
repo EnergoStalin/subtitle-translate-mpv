@@ -1,9 +1,9 @@
-import { Config } from './Config';
-import { Average } from './modules/Average';
-import { Translator } from './modules/Translator';
-import { Overlay } from './Overlay';
+/// <reference path="Config.ts"/>
+/// <reference path="modules/Average.ts"/>
+/// <reference path="modules/Translator.ts"/>
+/// <reference path="Overlay.ts"/>
 
-export class SubtitleView {
+class SubtitleView {
     private average: Average
     constructor(private overlay: Overlay, private translator: Translator, private config: Config) {
         this.average = new Average(-0.5, mp.get_time)

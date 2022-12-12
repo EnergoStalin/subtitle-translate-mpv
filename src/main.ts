@@ -1,6 +1,6 @@
-import { readConfig } from './Config';
+/// <reference path="Config.ts"/>
 
-export default function () {
+(function () {
     const aboba = readConfig('subutils-js')
     dump(aboba)
-}
+})()

@@ -4,7 +4,7 @@ type MeasureFuncNull = MeasureFunc | null
 /**
  * Class handles average value generation
  */
-export class Average {
+class Average {
     private count: number = 1
     private last: number = 0
 

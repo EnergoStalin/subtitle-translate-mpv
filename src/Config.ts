@@ -1,6 +1,4 @@
-import 'mp';
-
-export interface Config {
+interface Config {
     defaultDelay: number,
     translator: string,
     autoEnableTranslator: boolean,
@@ -22,7 +20,7 @@ const config: Config = {
     osdFont: 'Arial'
 }
 
-export function readConfig(name: string): Config {
+function readConfig(name: string): Config {
     mp.options.read_options(config as any, name)
 
     return config

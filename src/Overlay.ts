@@ -1,5 +1,4 @@
-import 'mp'
-import { Config } from './Config'
+/// <reference path="Config.ts"/>
 
 type MpOverlayExtended = mp.OSDOverlay & { hidden: boolean }
 
@@ -11,7 +10,7 @@ function WrapFont(line: string, font: string): string {
 	return WrapLine(line, `{\\fn${font}}`)
 }
 
-export class Overlay {
+class Overlay {
 	private overlay: MpOverlayExtended
 	private options: Config
 

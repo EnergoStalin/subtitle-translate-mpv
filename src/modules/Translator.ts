@@ -1,3 +1,3 @@
-export interface Translator {
+interface Translator {
     translate(value: string): string
 }

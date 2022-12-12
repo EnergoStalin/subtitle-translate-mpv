@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "tsc --watch",
-    "mpvnet": "onchange --await-write-finish 1000 -d 2000 -k \"../../scripts/subutils-js/**/*.js\" -- mpvnet.exe --volume=30"
+    "mpvnet": "onchange -d 5000 \"../../scripts/subutils.js\" -- mpvnet.exe --volume=30"
   },
   "dependencies": {}
 }
