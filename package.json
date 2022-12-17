@@ -13,5 +13,5 @@
     "dev": "tsc --watch",
     "mpvnet": "onchange -d 5000 \"../../scripts/subutils.js\" -- mpvnet.exe --volume=30"
   },
-  "dependencies": {}
+  "packageManager": "yarn@3.3.0"
 }

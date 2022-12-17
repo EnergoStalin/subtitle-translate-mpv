@@ -10,7 +10,7 @@ class TranslatorImpl extends Core.Translator.Type {
 }
 
 (function () {
-    const aboba = Core.Config.read('subutils-js')
+    const aboba = Core.Config.read(mp.get_script_name())
     const overlay = new UI.Overlay(aboba)
     overlay.setTranslation(new TranslatorImpl('en', 'ru').translate('aboba'), 'aboba')
     
