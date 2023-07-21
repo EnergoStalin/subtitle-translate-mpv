@@ -15,7 +15,7 @@ local o = {
 	running = false,
 	disabledManually = false
 }
-opt.read_options(o, 'subutil')
+opt.read_options(o, 'subtitle-translate-mpv')
 
 local overlay = require 'overlay'(o)
 local translator = require 'translate'(
