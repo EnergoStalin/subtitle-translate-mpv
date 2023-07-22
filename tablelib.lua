@@ -9,4 +9,24 @@ function m.filter(list, pred)
 	return res
 end
 
+function m.toString(map)
+	local str = ''
+	for key, value in pairs(map) do
+		if string.len(str) ~= 0 then str = str .. ', ' end
+		str = str .. key .. '=' .. tostring(value)
+	end
+
+	return str
+end
+
+function m.join(list, sep)
+	local str = ''
+	for _, value in ipairs(list) do
+		if string.len(str) ~= 0 then str = str .. sep end
+		str = str .. value
+	end
+
+	return str
+end
+
 return m

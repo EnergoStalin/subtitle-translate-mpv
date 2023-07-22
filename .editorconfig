@@ -22,10 +22,10 @@ max_line_length = 180
 end_of_line = lf
 
 #  none/ comma / semicolon / only_kv_colon
-table_separator_style = none
+table_separator_style = comma
 
 #optional keep/never/always/smart
-trailing_table_separator = keep
+trailing_table_separator = always
 
 # keep/remove/remove_table_only/remove_string_only
 call_arg_parentheses = keep

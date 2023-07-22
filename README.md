@@ -6,6 +6,8 @@
 > 📝
 > `~~` reffering to [mpv config folder](https://mpv.io/manual/stable/#script-location)
 
+> 📝 You can benchmark defaultDelay by executing benchmark-sub-translator script message [see](#🧾-recommended-inputconf)
+
 > ⚠️ Some languages may not work out of the box because of current provider read [dependencies](#%EF%B8%8F-optional-but-for-now-required-dependencies) below
 
 Modular script for auto translating subtitles on the fly into multiple languages.
@@ -19,6 +21,7 @@ You can extend it with you favorite translator by contributing one.
         - sub-primary-original
     - enable-sub-translator
     - disable-sub-translator
+    - benchmark-sub-translator
 
 ## ⬇️ Install
 - Clone repository into `~~/scripts` folder
@@ -45,6 +48,8 @@ osdFont=Arial
 # (match performed by lua string.find())
 # Or there any external subtitle with unknown language
 autoEnableTranslator=yes
+# How fast delay adjusts default is 8 translate requests(ticks)
+sensitivity=8
 ```
 ## 🧾 Recommended input.conf
 ```conf
@@ -52,6 +57,9 @@ CTRL+t script-message enable-sub-translator
 CTRL+T script-message disable-sub-translator
 ALT+t script-message sub-translated-only
 ALT+o script-message sub-primary-original
+
+# Will run benchmark to determine optimal defaultDelay for current translator
+ALT+b script-message benchmark-sub-translator
 ```
 ## ⚠️ Optional but for now required dependencies
 CrowTranslate for translation text see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)

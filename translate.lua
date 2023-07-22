@@ -1,21 +1,17 @@
 local mp = require 'mp'
-local avg = require 'modules.average' (-0.5, mp.get_time)
+local tlib = require 'tablelib'
 
-local function print_error(err, value)
+local function print_error(err, value, data)
 	if err ~= nil then
-		mp.msg.error(err.status,
-			value,
-			err.stdout,
-			err.error_message,
-			err.stderr
-		)
+		mp.msg.error(tlib.toString(err), value, data)
 	else
-		mp.msg.error(err)
+		mp.msg.error(data)
 	end
 end
 
 return function (translator, overlay, options)
 	local m = {}
+	local avg = require 'modules.average' (options.defaultDelay, mp.get_time, options.sensitivity)
 	function m.on_sub_changed()
 		local value = mp.get_property('sub-text-ass')
 		if value == nil or value == '' then
@@ -23,22 +19,26 @@ return function (translator, overlay, options)
 			return
 		end
 
+		avg:tick()
 		value = value:gsub('\\N', ' \\N '):gsub('\\n', ' \\n ')
 		local ok, data, err = pcall(translator, value)
 		if not ok then
-			print_error(err, value)
+			print_error(err, value, data)
 			return
 		end
 
-		avg:tick()
-		overlay:set_translation(data, value)
-		mp.set_property('sub-delay', options.defaultDelay - avg:tick())
+		overlay:setTranslation(data, value)
+
+		local delay = options.actualDelay - avg:tick()
+		mp.msg.debug('[translate] Applying sub-delay', delay)
+		mp.set_property('sub-delay', delay)
 
 		overlay:reveal()
 	end
 
-	function m.reset()
-		avg:reset(mp.get_property('sub-delay', -0.5))
+	function m.resetTicker(delay)
+		mp.msg.debug('[translate] Resetting ticker to', delay)
+		avg:reset(delay)
 	end
 
 	return m

@@ -1,12 +1,13 @@
 ---Constructor for average value generator
 ---@param initial number
 ---@return table
-return function (initial, measure)
+return function (initial, measure, sensitivity)
 	local average = {
 		avg = initial,
 		count = 1,
 		last = 0,
-		measure = measure
+		measure = measure,
+		sensitivity = sensitivity,
 	}
 
 	function average:reset(avg, measure)
@@ -24,6 +25,11 @@ return function (initial, measure)
 			self.last = 0
 		else
 			self.last = self.measure()
+		end
+
+		if self.count > sensitivity then
+			self.count = self.count % sensitivity
+			self.avg = self.avg / sensitivity
 		end
 
 		return self.avg / self.count

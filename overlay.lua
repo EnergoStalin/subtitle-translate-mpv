@@ -4,7 +4,7 @@ local mp = require 'mp'
 return function (options)
 	local overlay = mp.create_osd_overlay('ass-events')
 	local wrap = {
-		font = options.osdFont
+		font = options.osdFont,
 	}
 
 	function wrap:remove()
@@ -37,7 +37,7 @@ return function (options)
 
 	---@param primary string
 	---@param original string
-	function wrap:set_translation(primary, original)
+	function wrap:setTranslation(primary, original)
 		overlay.data = ''
 
 		if options.primaryOriginal then

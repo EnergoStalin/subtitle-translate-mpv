@@ -6,8 +6,15 @@ return function (translate, o, overlay)
 
 		mp.unobserve_property(translate.on_sub_changed)
 		mp.set_property('sub-visibility', 'yes')
-		mp.set_property('sub-delay', o.defaultDelay)
+		mp.set_property('sub-delay', o.userDelay)
+
+		mp.msg.debug('[unregister] Restoring userDelay', o.userDelay)
+
 		overlay:remove()
+
+		if o.disabledManually then
+			translate.resetTicker(o.defaultDelay)
+		end
 
 		o.running = false
 		mp.msg.info('Disabled')
