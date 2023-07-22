@@ -1,9 +1,9 @@
 local mp = require 'mp'
 
 
-return function(options)
+return function (options)
 	local overlay = mp.create_osd_overlay('ass-events')
-    local wrap = {
+	local wrap = {
 		font = options.osdFont
 	}
 
@@ -19,8 +19,8 @@ return function(options)
 	function wrap:reveal()
 		overlay.hidden = false
 		overlay:update()
-    end
-	
+	end
+
 	---@param line string
 	---@param text string
 	---@return string
@@ -37,7 +37,7 @@ return function(options)
 
 	---@param primary string
 	---@param original string
-    function wrap:set_translation(primary, original)
+	function wrap:set_translation(primary, original)
 		overlay.data = ''
 
 		if options.primaryOriginal then
@@ -45,7 +45,7 @@ return function(options)
 		end
 		if not options.translatedOnly then
 			overlay.data = '{\\fscx50\\fscy50}' .. original .. '\n'
-        end
+		end
 
 		overlay.data = wrap_font(wrap_line(overlay.data .. primary, '{\\a2}'), wrap.font)
 		overlay:update()

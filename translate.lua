@@ -1,15 +1,15 @@
 local mp = require 'mp'
-local avg = require 'modules.average'(-0.5, mp.get_time)
+local avg = require 'modules.average' (-0.5, mp.get_time)
 
 local function print_error(err, value)
 	if err ~= nil then
 		mp.msg.error(err.status,
-					value,
-					err.stdout,
-					err.error_message,
-					err.stderr
-        )
-    else
+			value,
+			err.stdout,
+			err.error_message,
+			err.stderr
+		)
+	else
 		mp.msg.error(err)
 	end
 end

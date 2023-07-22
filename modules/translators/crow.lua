@@ -12,7 +12,7 @@ return function (from, to)
 
 	---@param value string
 	---@return string | nil
-	return function(value)
+	return function (value)
 		-- Removing '--' due to stupid crow CLI
 		-- Passing value as stdin_data not work on windows
 		local escaped = value:gsub('--', '')
@@ -33,11 +33,14 @@ return function (from, to)
 
 		local data = codepage.to_utf8(result.stdout)
 		if data == nil then
-      mp.msg.warn('[crow] Got empty response ' .. tlib.join(args, ' '))
-      return nil
-    end
+			mp.msg.warn('[crow] Got empty response ' .. tlib.join(args, ' '))
+			return nil
+		end
 
-    if getos() == 'linux' then return data
-    else return string.sub(data, 0, #data - 2) end -- Trick for windows returning trailing characters
+		if getos() == 'linux' then
+			return data
+		else
+			return string.sub(data, 0, #data - 2)
+		end                                            -- Trick for windows returning trailing characters
 	end
 end

@@ -1,6 +1,6 @@
 local mp = require 'mp'
 
-return function(translate, o)
+return function (translate, o)
 	return function ()
 		if o.running then return end
 
