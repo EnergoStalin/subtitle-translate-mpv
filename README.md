@@ -59,6 +59,7 @@ ALT+t script-message sub-translated-only
 ALT+o script-message sub-primary-original
 
 # Will run benchmark to determine optimal defaultDelay for current translator
+# Check console for output
 ALT+b script-message benchmark-sub-translator
 ```
 ## :warning:Optional but for now required dependencies

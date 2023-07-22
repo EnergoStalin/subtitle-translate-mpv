@@ -21,9 +21,9 @@ local o = {
 opt.read_options(o, 'subtitle-translate-mpv')
 
 local overlay = require 'overlay' (o)
-local provider = require('modules.translators.' .. o.translator)(o.fromLang, o.toLang)
+local provider = require('modules.translators.' .. o.translator)
 local translator = require 'translate' (
-	provider,
+	provider(o.fromLang, o.toLang),
 	overlay,
 	o
 )
@@ -58,4 +58,4 @@ mp.register_script_message('disable-sub-translator',
 	end)
 
 mp.register_script_message('benchmark-sub-translator',
-	require 'benchmark' (provider))
+	require 'benchmark' (provider('en', 'ru')))
