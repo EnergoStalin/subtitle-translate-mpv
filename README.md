@@ -6,9 +6,9 @@
 > :memo:
 > `~~` reffering to [mpv config folder](https://mpv.io/manual/stable/#script-location)
 
-> :memo: You can benchmark defaultDelay by executing benchmark-sub-translator script message [see](#receipt-recommended-inputconf)
+> :memo: You can benchmark defaultDelay by executing benchmark-sub-translator script message [see](#receiptrecommended-inputconf)
 
-> :warning: Some languages may not work out of the box because of current provider read [dependencies](#warning-optional-but-for-now-required-dependencies)below
+> :warning: Some languages may not work out of the box because of current provider read [dependencies](#warningoptional-but-for-now-required-dependencies)below
 
 Modular script for auto translating subtitles on the fly into multiple languages.
 You can extend it with you favorite translator by contributing one.
