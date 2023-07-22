@@ -10,16 +10,20 @@ local o = {
 	fromLang = 'en',
 	toLang = 'ru',
 	osdFont = 'Arial',
+	sensitivity = 8,
 
 	-- Mega Cringe
 	running = false,
-	disabledManually = false
+	disabledManually = false,
+	userDelay = 0,
+	actualDelay = 0,
 }
 opt.read_options(o, 'subtitle-translate-mpv')
 
 local overlay = require 'overlay' (o)
+local provider = require('modules.translators.' .. o.translator)(o.fromLang, o.toLang)
 local translator = require 'translate' (
-	require('modules.translators.' .. o.translator)(o.fromLang, o.toLang),
+	provider,
 	overlay,
 	o
 )
@@ -52,3 +56,6 @@ mp.register_script_message('disable-sub-translator',
 	function ()
 		o.disabledManually = true; updateEvents(); unregister()
 	end)
+
+mp.register_script_message('benchmark-sub-translator',
+	require 'benchmark' (provider))
