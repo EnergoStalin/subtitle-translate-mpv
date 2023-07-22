@@ -6,13 +6,13 @@
 > :memo:
 > `~~` reffering to [mpv config folder](https://mpv.io/manual/stable/#script-location)
 
-> :memo: You can benchmark defaultDelay by executing benchmark-sub-translator script message [see](#🧾-recommended-inputconf)
+> :memo: You can benchmark defaultDelay by executing benchmark-sub-translator script message [see](#receipt-recommended-inputconf)
 
-> :warning: Some languages may not work out of the box because of current provider read [dependencies](#⚠️-optional-but-for-now-required-dependencies)below
+> :warning: Some languages may not work out of the box because of current provider read [dependencies](#warning-optional-but-for-now-required-dependencies)below
 
 Modular script for auto translating subtitles on the fly into multiple languages.
 You can extend it with you favorite translator by contributing one.
-## :herb: Features
+## :herb:Features
 - Auto enable when `toLang` not match any subtitle stream.
 - Auto correct subtitle offset for comfort watching without delays.
 - Register 4 script messages what you can bind via `~~/input.conf`.
@@ -23,12 +23,12 @@ You can extend it with you favorite translator by contributing one.
     - disable-sub-translator
     - benchmark-sub-translator
 
-## :arrow_down: Install
+## :arrow_down:Install
 - Clone repository into `~~/scripts` folder
 - Setup default settings for mpv and script itself described below
 - Install dependencies described below and make sure them accessible from path
 
-## :gear: Options
+## :gear:Options
 Avalible options `~~/script-opts/subtitle-translate-mpv.conf` with default values
 ```conf
 # Initial subtitle delay for translator
@@ -51,7 +51,7 @@ autoEnableTranslator=yes
 # How fast delay adjusts default is 8 translate requests(ticks)
 sensitivity=8
 ```
-## :receipt: Recommended input.conf
+## :receipt:Recommended input.conf
 ```conf
 CTRL+t script-message enable-sub-translator
 CTRL+T script-message disable-sub-translator
@@ -61,7 +61,7 @@ ALT+o script-message sub-primary-original
 # Will run benchmark to determine optimal defaultDelay for current translator
 ALT+b script-message benchmark-sub-translator
 ```
-## :warning: Optional but for now required dependencies
+## :warning:Optional but for now required dependencies
 CrowTranslate for translation text see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
 > :warning::warning::warning: Crow may decide to encode your language not into utf-8 then **script will not work**(fixed for russian by tricking [encoding](https://github.com/EnergoStalin/subtitle-translate-mpv/blob/master/modules/translators/encodings/auto.lua)) should work for major languages tho
 
