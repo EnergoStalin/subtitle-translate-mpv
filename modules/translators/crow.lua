@@ -1,5 +1,8 @@
+local mp = require 'mp'
 local utils = require 'mp.utils'
 local auto = require 'modules.translators.encodings.auto'
+local getos = require 'getos'
+local tlib = require 'tablelib'
 
 ---@param from string
 ---@param to string
@@ -29,8 +32,12 @@ return function (from, to)
 		if result.status ~= 0 then error(result) end
 
 		local data = codepage.to_utf8(result.stdout)
-		if data == nil then return nil end
+		if data == nil then
+      mp.msg.warn('[crow] Got empty response ' .. tlib.join(args, ' '))
+      return nil
+    end
 
-		return string.sub(data, 0, #data - 2)
+    if getos() == 'linux' then return data
+    else return string.sub(data, 0, #data - 2) end -- Trick for windows returning trailing characters
 	end
 end
