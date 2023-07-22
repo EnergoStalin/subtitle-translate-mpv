@@ -25,6 +25,9 @@ You can extend it with you favorite translator by contributing one.
 
 ## :arrow_down:Install
 - Clone repository into `~~/scripts` folder
+```
+git clone --depth 1 https://github.com/EnergoStalin/subtitle-translate-mpv.git
+```
 - Setup default settings for mpv and script itself described below
 - Install dependencies described below and make sure them accessible from path
 
