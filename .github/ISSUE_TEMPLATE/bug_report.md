@@ -15,6 +15,8 @@ A clear and concise description of what the bug is.
 
 e.g. seek on specific time call with specific arguments
 
+**File caused errors. If applicable**
+
 **Mpv version**
 ```
 mpv --version
