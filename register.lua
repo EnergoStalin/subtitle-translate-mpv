@@ -10,7 +10,7 @@ return function (translate, o)
 
 		o.actualDelay = o.userDelay + (o.defaultDelay)
 		mp.set_property('sub-delay', o.actualDelay)
-		mp.observe_property('sub-start', 'string', translate.on_sub_changed)
+		mp.observe_property('sub-start', 'string', translate.onSubChanged)
 		mp.set_property('sub-visibility', 'no')
 
 		o.running = true

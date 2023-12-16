@@ -24,15 +24,15 @@ return function (options)
 	---@param line string
 	---@param text string
 	---@return string
-	local function wrap_line(line, text)
+	local function wrapLine(line, text)
 		return text .. line .. text
 	end
 
 	---@param line string
 	---@param font string
 	---@return string
-	local function wrap_font(line, font)
-		return wrap_line(line, '{\\fn' .. font .. '}')
+	local function wrapFont(line, font)
+		return wrapLine(line, '{\\fn' .. font .. '}')
 	end
 
 	---@param primary string
@@ -47,7 +47,7 @@ return function (options)
 			overlay.data = '{\\fscx50\\fscy50}' .. original .. '\n'
 		end
 
-		overlay.data = wrap_font(wrap_line(overlay.data .. primary, '{\\a2}'), wrap.font)
+		overlay.data = wrapFont(wrapLine(overlay.data .. primary, '{\\a2}'), wrap.font)
 		overlay:update()
 	end
 
