@@ -9,14 +9,28 @@ function m.filter(list, pred)
 	return res
 end
 
-function m.toString(map)
+local function wrap(s, v)
+	return v .. s .. v
+end
+
+local function toJsonString(value)
+	return wrap(tostring(value):gsub('"', '\\"'), '"')
+end
+
+function m.toJson(map)
 	local str = ''
 	for key, value in pairs(map) do
 		if string.len(str) ~= 0 then str = str .. ', ' end
-		str = str .. key .. '=' .. tostring(value)
+		str = str .. toJsonString(key) .. ':'
+
+		if type(value) == "table" then
+			str = str .. m.toJson(value)
+		else
+			str = str .. toJsonString(value)
+		end
 	end
 
-	return str
+	return '{' .. str .. '}'
 end
 
 function m.join(list, sep)
