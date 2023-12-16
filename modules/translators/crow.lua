@@ -4,16 +4,31 @@ local auto = require 'modules.translators.encodings.auto'
 local getos = require 'getos'
 local tlib = require 'tablelib'
 
+local normalize = function(data)
+  return string.sub(data, 0, #data - 2)
+end
+
+local os = getos()
+if os == 'linux' then
+  normalize = function(data)
+    return data
+  end
+end
+
+local postprocess = function (data)
+	return normalize(data):gsub('\\ N', '\\N')[0]
+end
+
 ---@param from string
 ---@param to string
----@return function
 return function (from, to)
-	local codepage = auto(to)
+  local m = {}
+  local codepage = auto(to)
 
-	---@param value string
+  ---@param value string
 	---@return string | nil
-	return function (value)
-		-- Removing '--' due to stupid crow CLI
+  function m.translate(value)
+    -- Removing '--' due to stupid crow CLI
 		-- Passing value as stdin_data not work on windows
 		local escaped = value:gsub('--', '')
 		local args = {
@@ -37,10 +52,20 @@ return function (from, to)
 			return nil
 		end
 
-		if getos() == 'linux' then
-			return data
+		return postprocess(data)
+  end
+
+	function m.get_error(err)
+		if err.status ~= nil and err.status == -3 then
+			return 'crow not reachable in path'
 		else
-			return string.sub(data, 0, #data - 2)
-		end                                            -- Trick for windows returning trailing characters
+			if type(err) == "table" then
+				return tlib.toJson(err)
+			else
+				return err
+			end
+		end
 	end
+
+  return m
 end
