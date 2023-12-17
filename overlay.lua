@@ -35,19 +35,19 @@ return function (options)
 		return wrapLine(line, '{\\fn' .. font .. '}')
 	end
 
-	---@param primary string
+	---@param translated string
 	---@param original string
-	function wrap:setTranslation(primary, original)
+	function wrap:setTranslation(translated, original)
 		overlay.data = ''
 
 		if options.primaryOriginal then
-			primary, original = original, primary
+			translated, original = original, translated
 		end
 		if not options.translatedOnly then
 			overlay.data = '{\\fscx50\\fscy50}' .. original .. '\n'
 		end
 
-		overlay.data = wrapFont(wrapLine(overlay.data .. primary, '{\\a2}'), wrap.font)
+		overlay.data = wrapFont(wrapLine(overlay.data .. translated, '{\\a2}'), wrap.font)
 		overlay:update()
 	end
 

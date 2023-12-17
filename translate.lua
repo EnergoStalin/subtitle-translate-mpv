@@ -1,6 +1,10 @@
 local mp = require 'mp'
 
-return function (provider, overlay, options)
+---@param provider table
+---@param overlay table
+---@param options table
+---@return table
+local function constructor(provider, overlay, options)
 	local m = {}
 	local avg = require 'modules.average' (options.defaultDelay, mp.get_time, options.sensitivity)
 
@@ -37,3 +41,5 @@ return function (provider, overlay, options)
 
 	return m
 end
+
+return constructor
