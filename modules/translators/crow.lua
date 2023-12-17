@@ -16,7 +16,8 @@ if os == 'linux' then
 end
 
 local postprocess = function (data)
-	return normalize(data):gsub('\\ N', '\\N')[0]
+	local text = normalize(data):gsub('\\ N', '\\N')
+	return text
 end
 
 ---@param from string
