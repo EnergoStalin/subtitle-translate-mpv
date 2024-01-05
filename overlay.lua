@@ -24,7 +24,7 @@ return function (options)
 	---@param line string
 	---@param text string
 	---@return string
-	local function wrapLine(line, text)
+	local function wrapText(line, text)
 		return text .. line .. text
 	end
 
@@ -32,7 +32,12 @@ return function (options)
 	---@param font string
 	---@return string
 	local function wrapFont(line, font)
-		return wrapLine(line, '{\\fn' .. font .. '}')
+		return wrapText(line, '{\\fn' .. font .. '}')
+	end
+
+	---@param line string
+	local function wrapLine(line)
+		return wrapFont(wrapText(line, '{\\a2}'), wrap.font)
 	end
 
 	---@param translated string
@@ -44,10 +49,11 @@ return function (options)
 			translated, original = original, translated
 		end
 		if not options.translatedOnly then
-			overlay.data = '{\\fscx50\\fscy50}' .. original .. '\n'
+			overlay.data = '\\N\\N' .. wrapLine('{\\fscx50\\fscy50}' .. original)
 		end
 
-		overlay.data = wrapFont(wrapLine(overlay.data .. translated, '{\\a2}'), wrap.font)
+		overlay.data = wrapLine(translated) .. overlay.data
+		mp.msg.debug('[overlay] ', overlay.data)
 		overlay:update()
 	end
 
