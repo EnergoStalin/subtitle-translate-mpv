@@ -49,11 +49,11 @@ return function (options)
 			translated, original = original, translated
 		end
 		if not options.translatedOnly then
-			overlay.data = '\\N\\N' .. wrapLine('{\\fscx50\\fscy50}' .. original)
+			overlay.data = '\\N\\N' .. '{\\fscx50\\fscy50}' .. original
 		end
 
-		overlay.data = wrapLine(translated) .. overlay.data
-		mp.msg.debug('[overlay] ', overlay.data)
+		overlay.data = wrapLine(translated .. overlay.data)
+		mp.msg.trace('[overlay] ', overlay.data)
 		overlay:update()
 	end
 
