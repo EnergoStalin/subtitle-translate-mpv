@@ -45,8 +45,8 @@ primaryOriginal=no
 # Used in translator
 fromLang=en
 toLang=ru
-# Font for showed text
-osdFont=Arial
+# Full font name for showed text
+osdFont=Anime Ace v3
 # When any subitle stream language don't match toLang
 # (match performed by lua string.find())
 # Or there any external subtitle with unknown language
