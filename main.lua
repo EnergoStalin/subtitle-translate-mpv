@@ -9,7 +9,7 @@ local o = {
 	primaryOriginal = false,
 	fromLang = 'en',
 	toLang = 'ru',
-	osdFont = 'Arial',
+	osdFont = mp.get_property('osd-font'),
 	sensitivity = 8,
 
 	-- Mega Cringe

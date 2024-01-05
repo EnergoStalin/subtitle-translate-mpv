@@ -45,7 +45,7 @@ primaryOriginal=no
 # Used in translator
 fromLang=en
 toLang=ru
-# Full font name for showed text
+# Full font name for showed text defaults to osd-font mpv property and can be omitted
 osdFont=Anime Ace v3
 # When any subitle stream language don't match toLang
 # (match performed by lua string.find())
