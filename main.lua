@@ -18,7 +18,7 @@ local o = {
 	userDelay = 0,
 	actualDelay = 0,
 }
-opt.read_options(o, 'subtitle-translate-mpv')
+opt.read_options(o, mp.get_script_name())
 
 local overlay = require 'overlay' (o)
 local provider = require('modules.translators.' .. o.translator)

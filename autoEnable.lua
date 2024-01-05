@@ -1,10 +1,11 @@
 local mp = require 'mp'
+local utils = require 'mp.utils'
 local tablelib = require 'tablelib'
 
 return function (register, unregister, options)
 	return function ()
 		local tracks = mp.get_property_native('track-list', {})
-		mp.msg.debug('[autoEnable] tracks', tablelib.toJson(tracks))
+		mp.msg.debug('[autoEnable] tracks', utils.format_json(tracks))
 		local subs = tablelib.filter(tracks, function (track)
 			return track.type == 'sub'
 		end)

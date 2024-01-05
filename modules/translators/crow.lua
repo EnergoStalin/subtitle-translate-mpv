@@ -59,7 +59,7 @@ return function (from, to)
 	function m.get_error(err)
 		if err.status ~= nil and err.status == -3 then
 			return 'crow not reachable in path'
-		else return tlib.toJson(err) end
+		else return utils.format_json(err) end
 	end
 
   return m

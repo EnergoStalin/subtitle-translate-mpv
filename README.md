@@ -8,7 +8,7 @@
 
 > :memo: You can benchmark defaultDelay by executing benchmark-sub-translator script message [see](#receiptrecommended-inputconf)
 
-> :warning: Some languages may not work out of the box because of current provider read [dependencies](#warningoptional-but-for-now-required-dependencies)below
+> :warning: Some languages may not work out of the box because of current provider read [dependencies](#warningoptional-but-for-now-required-dependencies) below
 
 Modular script for auto translating subtitles on the fly into multiple languages.
 You can extend it with you favorite translator by contributing one.
@@ -32,7 +32,7 @@ git clone --depth 1 https://github.com/EnergoStalin/subtitle-translate-mpv.git
 - Install dependencies described below and make sure them accessible from path
 
 ## :gear:Options
-Avalible options `~~/script-opts/subtitle-translate-mpv.conf` with default values
+Avalible options `~~/script-opts/<cloned_folder_name>.conf`([see mp.get_script_name()](https://mpv.io/manual/stable/#lua-scripting-mp-get-script-name())) with default values
 ```conf
 # Initial subtitle delay for translator
 defaultDelay=-0.5
