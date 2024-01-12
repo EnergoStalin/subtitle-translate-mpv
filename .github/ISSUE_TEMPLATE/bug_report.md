@@ -24,7 +24,7 @@ mpv --version
 
 **Full mpv log from errored session**
 ```
-mpv --msg-level=subtitle_translate_mpv=trace file_caused_problems >& log.txt
+mpv --msg-level=subtitle_translate_mpv=trace,osd/libass=trace file_caused_problems >& log.txt
 ```
 
 **Additional context**
