@@ -35,7 +35,12 @@ return function (options)
 			line, _ = string.gsub(line, '\\fn[%a%w%s]+', '')
 		end
 
-		return wrapText(line, '{\\fn' .. wrap.font .. '\\a2\\fs' .. wrap.fontSize .. '}')
+		local text = wrapText(line, '{\\fn' .. wrap.font .. '\\fs' .. wrap.fontSize .. '}')
+		if not text:match('\\pos') then
+			text = wrapText(text, '{\\a2}')
+		end
+
+		return text
 	end
 
 	---@param translated string
@@ -46,11 +51,24 @@ return function (options)
 		if options.primaryOriginal then
 			translated, original = original, translated
 		end
-		if not options.translatedOnly then
-			overlay.data = '\\N\\N' .. '{\\fscx50\\fscy50}' .. original
+
+		-- Process text line by line
+		local formattedTranslated = ''
+		for s in translated:gmatch("[^\r\n]+") do
+			formattedTranslated = formattedTranslated .. wrapLine(s)
 		end
 
-		overlay.data = wrapLine(translated .. overlay.data)
+		if not options.translatedOnly then
+			-- Process text line by line
+			local formattedOriginal = ''
+			for s in original:gmatch("[^\r\n]+") do
+				formattedOriginal = wrapText(formattedOriginal .. wrapLine(s), '{\\fscx50\\fscy50}')
+			end
+
+			overlay.data = '\\N\\N' .. formattedOriginal
+		end
+
+		overlay.data = formattedTranslated .. overlay.data
 		mp.msg.trace('[overlay] ', overlay.data)
 		overlay:update()
 	end
