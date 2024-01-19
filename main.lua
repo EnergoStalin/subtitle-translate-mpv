@@ -10,6 +10,8 @@ local o = {
 	fromLang = 'en',
 	toLang = 'ru',
 	osdFont = mp.get_property('osd-font'),
+	osdFontSize = mp.get_property('osd-font-size'),
+	overrideFonts = true,
 	sensitivity = 8,
 
 	-- Mega Cringe

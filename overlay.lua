@@ -5,6 +5,7 @@ return function (options)
 	local overlay = mp.create_osd_overlay('ass-events')
 	local wrap = {
 		font = options.osdFont,
+		fontSize = options.osdFontSize,
 	}
 
 	function wrap:remove()
@@ -29,15 +30,12 @@ return function (options)
 	end
 
 	---@param line string
-	---@param font string
-	---@return string
-	local function wrapFont(line, font)
-		return wrapText(line, '{\\fn' .. font .. '}')
-	end
-
-	---@param line string
 	local function wrapLine(line)
-		return wrapFont(wrapText(line, '{\\a2}'), wrap.font)
+		if options.overrideFonts then
+			line, _ = string.gsub(line, '\\fn[%a%w%s]+', '')
+		end
+
+		return wrapText(line, '{\\fn' .. wrap.font .. '\\a2\\fs' .. wrap.fontSize .. '}')
 	end
 
 	---@param translated string

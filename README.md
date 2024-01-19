@@ -47,6 +47,10 @@ fromLang=en
 toLang=ru
 # Full font name for showed text defaults to osd-font mpv property and can be omitted
 osdFont=Anime Ace v3
+# defaults to osd-font-size
+osdFontSize=36
+# Override all subtitle fonts to osdFont
+overrideFonts=yes
 # When any subitle stream language don't match toLang
 # (match performed by lua string.find())
 # Or there any external subtitle with unknown language
