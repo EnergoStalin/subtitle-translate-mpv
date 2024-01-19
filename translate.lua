@@ -17,10 +17,10 @@ local function constructor(provider, overlay, options)
 
 		avg:tick()
 		value = value:gsub('\\N', ' \\N '):gsub('\\n', ' \\n ')
-    mp.msg.debug('[translate] request', value)
+    mp.msg.debug('[translate] -> ', value)
 		local ok, data = pcall(provider.translate, value)
 		if not ok then
-			mp.msg.error('[translate] Error ' .. provider.get_error(data))
+			mp.msg.error('[translate] !!! ' .. provider.get_error(data))
 			return
 		end
 
@@ -28,7 +28,7 @@ local function constructor(provider, overlay, options)
 
 		local delay = options.actualDelay - avg:tick()
 		mp.msg.debug('[translate] Applying sub-delay', delay)
-    mp.msg.debug('[translate] response', data)
+    mp.msg.debug('[translate] <- ', data)
 		mp.set_property('sub-delay', delay)
 
 		overlay:reveal()
