@@ -24,8 +24,8 @@ You can extend it with you favorite translator by contributing one.
     - benchmark-sub-translator
 
 ## :bug:Known issues
-- Encoding in some languages with crow provider under windows
-- Subtitle rendering in translatedOnly=no mode can go out of screen slightly
+- Encoding in some languages with crow provider under windows [#2](https://github.com/EnergoStalin/subtitle-translate-mpv/issues/2)
+- Subtitle rendering in `translatedOnly=no` mode can go slightly out of screen
 
 ## :arrow_down:Install
 - Clone repository into `~~/scripts` folder
