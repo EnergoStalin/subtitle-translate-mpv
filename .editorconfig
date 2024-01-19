@@ -7,7 +7,7 @@ indent_style = tab
 # if indent_style is space, this is valid
 indent_size = 4
 # if indent_style is tab, this is valid
-tab_width = 1
+tab_width = 2
 # none/single/double
 quote_style = single
 
