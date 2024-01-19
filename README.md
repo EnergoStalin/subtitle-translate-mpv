@@ -23,6 +23,10 @@ You can extend it with you favorite translator by contributing one.
     - disable-sub-translator
     - benchmark-sub-translator
 
+## :bug:Known issues
+- Encoding in some languages with crow provider under windows
+- Subtitle rendering in translatedOnly=no mode can go out of screen slightly
+
 ## :arrow_down:Install
 - Clone repository into `~~/scripts` folder
 ```
