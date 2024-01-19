@@ -6,7 +6,7 @@
     {
       "label": "mpv",
       "type": "shell",
-      "command": "mpv --msg-level=subtitle_translate_mpv=trace --profile=infinite ${workspaceFolder}/test.*",
+      "command": "mpv --msg-level=subtitle_translate_mpv=trace,osd/libass=debug --profile=infinite ${workspaceFolder}/test.*",
       "presentation": {
         "echo": true,
         "reveal": "always",
