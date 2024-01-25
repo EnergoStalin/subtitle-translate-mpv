@@ -71,12 +71,15 @@ ALT+b script-message benchmark-sub-translator
 :memo: One of providers listed below should be installed and specified in translator config field
 
 - [Console-Translate](https://github.com/Lifailon/Console-Translate) see [Console-Translate.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/Console-Translate.lua) (Reccomended)
-    > :warning: Windows untested but should work
+    > :memo: Windows untested but should work
+
     Average translation time by benchmark.lua **0.4s**
 
 - [crow](https://github.com/crow-translate/crow-translate) see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
     > :warning::warning::warning: Crow may decide to encode your language not into utf-8 [#2](https://github.com/EnergoStalin/subtitle-translate-mpv/issues/2) then **subtitles will be broken**(fixed for russian by tricking [encoding](https://github.com/EnergoStalin/subtitle-translate-mpv/blob/master/modules/translators/encodings/auto.lua)) should work for major languages tho
+    
     Average translation time by benchmark.lua **0.85s**
+
     Avalible via winget
     ```powershell
     winget install --id CrowTranslate.CrowTranslate
