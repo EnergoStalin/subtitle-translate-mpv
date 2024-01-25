@@ -30,7 +30,6 @@ local linuxInvoke = function (commonArgs, value)
 	local result = utils.subprocess({
 		args = commonArgs,
 		capture_stdout = true,
-		playback_only = true,
 		stdin_data = value,
 	})
 
