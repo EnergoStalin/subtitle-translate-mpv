@@ -71,7 +71,7 @@ ALT+b script-message benchmark-sub-translator
 :memo: One of providers listed below should be installed and specified in translator config field
 
 - [Console-Translate](https://github.com/Lifailon/Console-Translate) see [Console-Translate.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/Console-Translate.lua) (Reccomended)
-    > :warning: Perfomance is bad when subtitle has many lines due to lack of batch support so translating line by line. But it's still overall a lot better than crow. (Windows untested)
+    > :warning: Windows untested but should work
     Average translation time by benchmark.lua **0.4s**
 
 - [crow](https://github.com/crow-translate/crow-translate) see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)

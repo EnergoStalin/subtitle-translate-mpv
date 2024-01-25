@@ -8,30 +8,24 @@ return function (from, to)
 	---@param value string
 	---@return string | nil
 	function m.translate(value)
-		local lines = ''
+		local result = utils.subprocess({
+			args = {
+				'pwsh',
+				'-NoProfile',
+				'-NonInteractive',
+				'-Command',
+				string.format(
+					'Import-Module Console-Translate; Get-Translate -Text "%s" -LanguageSource %s -LanguageTarget %s',
+					string.gsub(value, '[\r\n]', '\\n'),
+					from,
+					to
+				)
+			},
+			capture_stdout = true
+		})
 
-		for l in string.gmatch(value, '[^\r\n]+') do
-			local result = utils.subprocess({
-				args = {
-					'pwsh',
-					'-NoProfile',
-					'-Command',
-					string.format(
-						'Import-Module Console-Translate; Get-Translate -Text "%s" -LanguageSource %s -LanguageTarget %s',
-						l,
-						from,
-						to
-					)
-				},
-				capture_stdout = true
-			})
-
-			if result.status ~= 0 then error(result) end
-
-			lines = string.format('%s%s\n', lines, result.stdout)
-		end
-
-		return lines
+		local s, _ = string.gsub(result.stdout, '\\n', '\n')
+		return s
 	end
 
 	function m.get_error(err)
