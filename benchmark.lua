@@ -15,7 +15,7 @@ return function (provider)
 	return function ()
 		local delay = 0
 		for _ = 1, 2 do
-			for value in pairs(values) do
+			for _, value in pairs(values) do
 				avg:tick()
 
 				pcall(provider.translate, value)
