@@ -1,5 +1,10 @@
 local utils = require 'mp.utils'
 
+local function escape(str)
+	local s, _ = string.gsub(str, '\'', '\'\'')
+	return s
+end
+
 ---@param from string
 ---@param to string
 return function (from, to)
@@ -15,8 +20,8 @@ return function (from, to)
 				'-NonInteractive',
 				'-Command',
 				string.format(
-					'Import-Module Console-Translate; Get-Translate -Text "%s" -LanguageSource %s -LanguageTarget %s',
-					string.gsub(value, '[\r\n]', '\\n'),
+					'Import-Module Console-Translate; Get-Translate -Text \'%s\' -LanguageSource %s -LanguageTarget %s',
+					escape(string.gsub(value, '[\r\n]', '\\n')),
 					from,
 					to
 				)
@@ -25,6 +30,7 @@ return function (from, to)
 		})
 
 		local s, _ = string.gsub(result.stdout, '\\n', '\n')
+		s, _ = string.gsub(s, '&quot;', '')
 		return s
 	end
 
