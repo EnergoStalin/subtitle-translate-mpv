@@ -68,7 +68,7 @@ ALT+o script-message sub-primary-original
 ALT+b script-message benchmark-sub-translator
 ```
 ## Providers
-:note: One of providers listed below should be installed and specified in translator config field
+:memo: One of providers listed below should be installed and specified in translator config field
 
 - [Console-Translate](https://github.com/Lifailon/Console-Translate) see [Console-Translate.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/Console-Translate.lua) (Reccomended)
     > :warning: Perfomance is bad when subtitle has many lines due to lack of batch support so translating line by line. But it's still overall a lot better than crow. (Windows untested)
