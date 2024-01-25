@@ -72,7 +72,7 @@ ALT+b script-message benchmark-sub-translator
 
 - [Console-Translate](https://github.com/Lifailon/Console-Translate) see [Console-Translate.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/Console-Translate.lua) (Reccomended)
     > :warning: Perfomance is bad when subtitle has many lines due to lack of batch support so translating line by line. But it's still overall a lot better than crow. (Windows untested)
-    Average translation time by benchmark.lua **-0.4s**
+    Average translation time by benchmark.lua **0.4s**
 
 - [crow](https://github.com/crow-translate/crow-translate) see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
     > :warning::warning::warning: Crow may decide to encode your language not into utf-8 [#2](https://github.com/EnergoStalin/subtitle-translate-mpv/issues/2) then **subtitles will be broken**(fixed for russian by tricking [encoding](https://github.com/EnergoStalin/subtitle-translate-mpv/blob/master/modules/translators/encodings/auto.lua)) should work for major languages tho
