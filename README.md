@@ -21,9 +21,6 @@ You can extend it with you favorite translator by contributing one.
     - disable-sub-translator
     - benchmark-sub-translator
 
-## :bug:Known issues
-- Encoding in some languages with crow provider under windows [#2](https://github.com/EnergoStalin/subtitle-translate-mpv/issues/2)
-
 ## :arrow_down:Install
 - Clone repository into `~~/scripts` folder
 ```
@@ -37,8 +34,8 @@ Avalible options `~~/script-opts/<cloned_folder_name>.conf`([see mp.get_script_n
 ```conf
 # Initial subtitle delay for translator
 defaultDelay=-0.5
-# Which script to use as translator(see translators folder in repository)
-translator=crow
+# Which provider to use(see translators folder in repository) or Providers readme section for reference
+translator=Console-Translate
 # Show only primary text
 translatedOnly=yes
 # Use original text as primary
@@ -70,11 +67,17 @@ ALT+o script-message sub-primary-original
 # Check console for output
 ALT+b script-message benchmark-sub-translator
 ```
-## :warning:Optional but for now required dependencies
-CrowTranslate for translation text see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
-> :warning::warning::warning: Crow may decide to encode your language not into utf-8 then **script will not work**(fixed for russian by tricking [encoding](https://github.com/EnergoStalin/subtitle-translate-mpv/blob/master/modules/translators/encodings/auto.lua)) should work for major languages tho
+## Providers
+:note: One of providers listed below should be installed and specified in translator config field
 
-Avalible via winget
-```powershell
-winget install --id CrowTranslate.CrowTranslate
-```
+- [Console-Translate](https://github.com/Lifailon/Console-Translate) see [Console-Translate.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/Console-Translate.lua) (Reccomended)
+    > :note: Perfomance is bad when subtitle has many lines due to lack of batch support so translating line by line. But it's still overall a lot better than crow. (Windows untested)
+    Average translation time by benchmark.lua **-0.4s**
+
+- [crow](https://github.com/crow-translate/crow-translate) see [crow.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/crow.lua)
+    > :warning::warning::warning: Crow may decide to encode your language not into utf-8 [#2](https://github.com/EnergoStalin/subtitle-translate-mpv/issues/2) then **subtitles will be broken**(fixed for russian by tricking [encoding](https://github.com/EnergoStalin/subtitle-translate-mpv/blob/master/modules/translators/encodings/auto.lua)) should work for major languages tho
+    Average translation time by benchmark.lua **0.85s**
+    Avalible via winget
+    ```powershell
+    winget install --id CrowTranslate.CrowTranslate
+    ```

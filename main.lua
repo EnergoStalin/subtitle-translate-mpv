@@ -3,7 +3,7 @@ local opt = require 'mp.options'
 
 local o = {
 	defaultDelay = -0.5,
-	translator = 'crow',
+	translator = 'Console-Translate',
 	autoEnableTranslator = false,
 	translatedOnly = false,
 	primaryOriginal = false,
