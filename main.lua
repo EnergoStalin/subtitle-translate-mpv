@@ -30,7 +30,7 @@ local translator = require 'translate' (
 	o
 )
 
-local register = require 'register' (translator, o)
+local register = require 'register' (translator, o, overlay)
 local unregister = require 'unregister' (translator, o, overlay)
 local autoEnable = require 'autoEnable' (register, unregister, o)
 
