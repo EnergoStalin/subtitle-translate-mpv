@@ -24,12 +24,12 @@ local function constructor(provider, overlay, options)
 			return
 		end
 
-		overlay:setTranslation(data, value)
-
 		local delay = options.actualDelay - avg:tick()
-		mp.msg.debug('[translate] Applying sub-delay', delay)
+		mp.msg.debug('[translate] Applying sub-delay', -delay)
+		mp.set_property('sub-delay', -delay)
+
+		overlay:setTranslation(data, value)
     mp.msg.debug('[translate] <- ', data)
-		mp.set_property('sub-delay', delay)
 
 		overlay:reveal()
 	end
