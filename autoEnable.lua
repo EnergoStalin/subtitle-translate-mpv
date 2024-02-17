@@ -10,8 +10,8 @@ return function (register, unregister, options)
 			return track.type == 'sub'
 		end)
 		if #tablelib.filter(subs, function (track)
-					return track.lang ~= nil and track.lang:find(options.toLang)
-				end) == 0 and #subs ~= 0 then
+				return (track.lang ~= nil and track.lang:find(options.toLang)) or track.external
+			end) == 0 and #subs ~= 0 then
 			register()
 		else
 			unregister()
