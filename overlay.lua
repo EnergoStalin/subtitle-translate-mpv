@@ -44,6 +44,7 @@ return function (options)
 		overlay.data = ''
 
 		local styles = mp.get_property('sub-ass-extradata')
+		if styles == nil then return end
 
 		-- Grab subtitle resolution and set it to osd of present
 		local res_x = tonumber(styles:gmatch('PlayResX: (%d+)')())
