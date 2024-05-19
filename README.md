@@ -49,6 +49,8 @@ toLang=ru
 osdFont=Anime Ace v3
 # defaults to osd-font-size
 osdFontSize=36
+# Font scale relative to osdFontSize
+osdOriginalFontScale=50
 # Override all subtitle fonts to osdFont
 overrideFonts=yes
 # When any subitle stream language don't match toLang

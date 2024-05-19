@@ -11,6 +11,7 @@ local o = {
 	toLang = 'ru',
 	osdFont = mp.get_property('osd-font'),
 	osdFontSize = mp.get_property('osd-font-size'),
+	osdOriginalFontScale = 50,
 	overrideFonts = true,
 	sensitivity = 8,
 

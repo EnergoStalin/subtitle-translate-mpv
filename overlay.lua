@@ -85,18 +85,23 @@ return function (options)
 				'\n'
 			)
 		end
+		local scaleTag = string.format(
+			'{\\fscx%d\\fscy%d}',
+			options.osdOriginalFontScale,
+			options.osdOriginalFontScale
+		)
 
 		if not options.translatedOnly then
 			local originalLines = splitLines(original)
 			local mergedLines = {}
 			for i, _ in ipairs(originalLines) do
-				local l = string.format('%s%s%s%s',
+				local l = string.format('%s\\N%s%s%s',
 					translatedLines[i],
-					'\\N{\\fscx50\\fscy50}', -- 50% size
+					scaleTag,
 					wrapLine(
 						string.gsub(originalLines[i], '{?\\pos%(.+%)}?', '') -- Strip pos cause already present in translatedLines
 					),
-					'{\\fscx50\\fscy50}'
+					scaleTag
 				)
 
 				-- Idk where \n appears but let's just remove it here
