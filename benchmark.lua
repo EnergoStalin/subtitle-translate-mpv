@@ -1,5 +1,4 @@
 local mp = require 'mp'
-local avg = require 'modules.average' (0, mp.get_time, 50)
 
 local values = {
 	'Our online English classes feature lots of useful learning materials and activities to help you develop your reading skills with confidence in a safe and inclusive learning environment.',
@@ -13,6 +12,8 @@ local values = {
 
 return function (provider)
 	return function ()
+		local avg = require 'modules.average' (0, mp.get_time, 50)
+
 		local delay = 0
 		for _ = 1, 2 do
 			for _, value in pairs(values) do
