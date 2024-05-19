@@ -13,7 +13,8 @@ overseer.register_template({
 				'--script-opts-append=sub-translator-debug=1',
 				'--start=00:00:08',
 				'--msg-level=subtitle_translate_mpv=trace,osd=debug',
-				'--profile=infinite test.*',
+				'--profile=infinite',
+				'test.mkv'
 			},
 			components = { 'unique', 'default', },
 			cwd = vim.fn.getcwd(),
