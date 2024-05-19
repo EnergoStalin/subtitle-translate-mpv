@@ -2,7 +2,7 @@ local mp = require 'mp'
 local utils = require 'mp.utils'
 local tablelib = require 'tablelib'
 
-local debug = mp.get_opt('sub-translator-debug') ~= ''
+local debug = mp.get_opt('sub-translator-debug') ~= nil
 
 return function (register, unregister, options)
 	return function ()
