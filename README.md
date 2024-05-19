@@ -1,5 +1,5 @@
 # SubtitleTranslateMPV
-[![wakatime](https://wakatime.com/badge/user/e95ece5f-54ed-4ef2-9ff3-b88a5a8bfc5c/project/018c75c5-8ed3-419b-bcee-46019d97f66a.svg)](https://wakatime.com/badge/user/e95ece5f-54ed-4ef2-9ff3-b88a5a8bfc5c/project/018c75c5-8ed3-419b-bcee-46019d97f66a)
+[![wakatime](https://wakatime.com/badge/user/e95ece5f-54ed-4ef2-9ff3-b88a5a8bfc5c/project/f492dcc3-e7cb-41cc-8bf0-899f69af8719.svg)](https://wakatime.com/badge/user/e95ece5f-54ed-4ef2-9ff3-b88a5a8bfc5c/project/f492dcc3-e7cb-41cc-8bf0-899f69af8719)
 
 ![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
 
