@@ -32,6 +32,9 @@ return function (from, to)
 		local s, _ = string.gsub(result.stdout, '\\n', '\n')
 		s, _ = string.gsub(s, '&quot;', '"')
 		s, _ = string.gsub(s, '&#39;', '\'')
+
+		-- Remove occasional commas which is mostly wrong
+		s, _ = string.gsub(s, '[ \\Nn]+,', '')
 		return s
 	end
 
