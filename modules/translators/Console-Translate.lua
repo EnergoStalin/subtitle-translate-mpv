@@ -33,10 +33,6 @@ return function (from, to)
 		s, _ = string.gsub(s, '&quot;', '"')
 		s, _ = string.gsub(s, '&#39;', '\'')
 
-		-- Remove occasional commas which is mostly wrong
-		s, _ = string.gsub(s, '[ \\Nn]+,', '')
-		-- Return dot on it's place.
-		s, _ = string.gsub(s, '[ \\Nn]+%.', '.')
 		return s
 	end
 
