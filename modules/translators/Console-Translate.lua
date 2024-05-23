@@ -24,9 +24,9 @@ return function (from, to)
 					escape(string.gsub(value, '[\r\n]', '\\n')),
 					from,
 					to
-				)
+				),
 			},
-			capture_stdout = true
+			capture_stdout = true,
 		})
 
 		local s, _ = string.gsub(result.stdout, '\\n', '\n')
