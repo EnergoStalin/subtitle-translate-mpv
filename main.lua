@@ -9,6 +9,7 @@ local translator = require 'translate' (
 	o
 )
 
+local cache = require 'cache'
 local register = require 'register' (translator, o, overlay)
 local unregister = require 'unregister' (translator, o, overlay)
 local autoEnable = require 'autoEnable' (register, unregister, o)
@@ -40,3 +41,6 @@ mp.register_script_message('disable-sub-translator',
 
 mp.register_script_message('benchmark-sub-translator',
 	require 'benchmark' (provider('en', 'ru')))
+
+mp.register_event('end-file', cache.saveToDisk)
+mp.register_event('file-loaded', cache.tryLoadFromDisk)

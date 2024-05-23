@@ -1,4 +1,5 @@
 local mp = require 'mp'
+local cache = require 'cache'
 
 ---@param provider table
 ---@param overlay table
@@ -18,7 +19,16 @@ local function constructor(provider, overlay, options)
 
 		avg:tick()
 		value = value:gsub('\\N', ' \\N '):gsub('\\n', ' \\n ')
-    mp.msg.debug('[translate] -> ', value)
+		mp.msg.debug('[translate] -> ', value)
+
+		local cached = cache.get(value)
+		if cached ~= nil then
+			mp.set_property_number('sub-delay', options.userDelay)
+			overlay:setTranslation(cached, value)
+			mp.msg.debug('[translate] <- (C) ', cached)
+			overlay:reveal()
+			return
+		end
 
 		local ok, data = pcall(provider.translate, value)
 		if not ok then
@@ -36,8 +46,9 @@ local function constructor(provider, overlay, options)
 		mp.msg.debug('[translate] Applying sub-delay', -delay)
 		mp.set_property('sub-delay', -delay)
 
+		cache.set(value, data)
 		overlay:setTranslation(data, value)
-    mp.msg.debug('[translate] <- ', data)
+		mp.msg.debug('[translate] <- ', data)
 
 		overlay:reveal()
 	end

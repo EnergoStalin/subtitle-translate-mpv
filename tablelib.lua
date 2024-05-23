@@ -13,6 +13,27 @@ function m.filter(list, pred)
 end
 
 ---@param list table
+---@return boolean
+function m.isEmpty(list)
+	for _ in pairs(list) do
+		return false
+	end
+
+	return true
+end
+
+---@param list table
+---@return number
+function m.length(list)
+	local len = 0
+	for _ in pairs(list) do
+		len = len + 1
+	end
+
+	return len
+end
+
+---@param list table
 ---@param sep string
 ---@return string
 function m.join(list, sep)
