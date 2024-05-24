@@ -22,6 +22,10 @@ e.g. seek on specific time call with specific arguments
 mpv --version
 ```
 
+**Script config**
+
+File from \~\~/script-opts/<script_folder_name>.conf
+
 **Full mpv log from errored session**
 ```
 mpv --msg-level=subtitle_translate_mpv=trace,osd/libass=trace file_caused_problems >& log.txt
