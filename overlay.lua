@@ -16,6 +16,8 @@ end
 
 return function (options)
 	local overlay = mp.create_osd_overlay('ass-events')
+	overlay.compute_bounds = true
+
 	local wrap = {
 		font = options.osdFont,
 		fontSize = options.osdFontSize,
@@ -65,7 +67,7 @@ return function (options)
 
 	function wrap:reveal()
 		overlay.hidden = false
-		overlay:update()
+		mp.msg.debug('[overlay]', utils.format_json(overlay:update()), '(bounds)')
 	end
 
 	---@param translated string
@@ -116,7 +118,9 @@ return function (options)
 			)
 		end
 
-		mp.msg.trace('[overlay] ', overlay.data)
+		mp.msg.debug('[overlay] <- ', overlay.data)
+
+		wrap:reveal()
 	end
 
 	return wrap

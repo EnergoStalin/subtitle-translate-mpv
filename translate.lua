@@ -38,8 +38,6 @@ local function constructor(provider, overlay, options)
 
 		overlay:setTranslation(data, value)
     mp.msg.debug('[translate] <- ', data)
-
-		overlay:reveal()
 	end
 
 	function m.resetTicker(delay)
