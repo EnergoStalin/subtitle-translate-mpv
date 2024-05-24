@@ -31,7 +31,9 @@ return function (from, to)
 
 		local s, _ = string.gsub(result.stdout, '\\n', '\n')
 		s, _ = string.gsub(s, '&quot;', '"')
+		s, _ = string.gsub(s, '&amp;', '&')
 		s, _ = string.gsub(s, '&#39;', '\'')
+		s, _ = string.gsub(s, '\\%s', '\\')
 
 		return s
 	end
