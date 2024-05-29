@@ -1,5 +1,4 @@
 local mp = require 'mp'
-local utils = require 'mp.utils'
 local auto = require 'modules.translators.encodings.auto'
 local getos = require 'getos'
 local tlib = require 'tablelib'
@@ -15,10 +14,10 @@ local windowsInkove = function (commonArgs, value)
 
 	table.insert(commonArgs, escaped)
 
-	local result = utils.subprocess({
+	local result = mp.command_native({
+		name = 'subprocess',
 		args = commonArgs,
 		capture_stdout = true,
-		playback_only = true,
 	})
 
 	return result
@@ -27,7 +26,8 @@ end
 local linuxInvoke = function (commonArgs, value)
 	table.insert(commonArgs, '-i')
 
-	local result = utils.subprocess({
+	local result = mp.command_native({
+		name = 'subprocess',
 		args = commonArgs,
 		capture_stdout = true,
 		stdin_data = value,

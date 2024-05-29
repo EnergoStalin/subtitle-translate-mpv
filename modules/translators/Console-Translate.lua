@@ -1,4 +1,4 @@
-local utils = require 'mp.utils'
+local mp = require 'mp'
 
 local function escape(str)
 	local s, _ = string.gsub(str, '\'', '\'\'')
@@ -13,7 +13,8 @@ return function (from, to)
 	---@param value string
 	---@return string | nil
 	function m.translate(value)
-		local result = utils.subprocess({
+		local result = mp.command_native({
+			name = 'subprocess',
 			args = {
 				'pwsh',
 				'-NoProfile',
