@@ -1,8 +1,14 @@
 local mp = require 'mp'
+
 local o = require 'options'
 
+---@type OverlayWrapper
 local overlay = require 'overlay' (o)
+
+---@type TranslationProvider
 local provider = require('modules.translators.' .. o.translator)
+
+---@type Translator
 local translator = require 'translate' (
 	provider(o.fromLang, o.toLang),
 	overlay,

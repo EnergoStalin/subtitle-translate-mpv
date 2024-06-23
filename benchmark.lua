@@ -1,4 +1,5 @@
 local mp = require 'mp'
+local logger = require 'logger' ('benchmark')
 
 local values = {
 	'Our online English classes feature lots of useful learning materials and activities to help you develop your reading skills with confidence in a safe and inclusive learning environment.',
@@ -10,6 +11,7 @@ local values = {
 	'Take our free online English test to find out which level to choose. Select your level, from A1 English level (elementary) to C1 English level (advanced), and improve your reading skills at your own speed, whenever it\'s convenient for you.',
 }
 
+---@param provider TranslationProvider
 return function (provider)
 	return function ()
 		local avg = require 'modules.average' (0, mp.get_time, 50)
@@ -22,11 +24,11 @@ return function (provider)
 				pcall(provider.translate, value)
 
 				delay = avg:tick()
-				mp.msg.info('[benchmark] Running... ', delay)
+				logger.info('Running...', delay)
 			end
 		end
 
-		mp.msg.info('[benchmark] Recommended delay is', delay)
+		logger.info('Recommended delay is', delay)
 		return delay
 	end
 end

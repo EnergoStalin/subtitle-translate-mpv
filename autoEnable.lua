@@ -1,9 +1,13 @@
 local mp = require 'mp'
 local utils = require 'mp.utils'
 local tablelib = require 'tablelib'
+local logger = require 'logger' ('autoEnable')
 
 local debug = mp.get_opt('sub-translator-debug') ~= nil
 
+---@param register fun(): nil
+---@param unregister fun(): nil
+---@param options ScriptOptions
 return function (register, unregister, options)
 	return function ()
 		if debug then
@@ -12,7 +16,7 @@ return function (register, unregister, options)
 		end
 
 		local tracks = mp.get_property_native('track-list', {})
-		mp.msg.trace('[autoEnable] tracks', utils.format_json(tracks))
+		logger.trace('tracks', utils.format_json(tracks))
 		local subs = tablelib.filter(tracks, function (track)
 			return track.type == 'sub'
 		end)

@@ -1,5 +1,9 @@
 local mp = require 'mp'
+local logger = require 'logger' ('unregister')
 
+---@param translate Translator
+---@param o ScriptOptions
+---@param overlay OverlayWrapper
 return function (translate, o, overlay)
 	return function ()
 		if not o.running then return end
@@ -8,7 +12,7 @@ return function (translate, o, overlay)
 		mp.set_property('sub-visibility', 'yes')
 		mp.set_property('sub-delay', o.userDelay)
 
-		mp.msg.debug('[unregister] Restoring userDelay', o.userDelay)
+		logger.debug('Restoring userDelay', o.userDelay)
 
 		overlay:remove()
 
@@ -17,6 +21,6 @@ return function (translate, o, overlay)
 		end
 
 		o.running = false
-		mp.msg.info('Disabled')
+		logger.info('Disabled')
 	end
 end

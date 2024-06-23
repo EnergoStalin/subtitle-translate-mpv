@@ -1,12 +1,18 @@
 local mp = require 'mp'
+local utils = require 'mp.utils'
 local auto = require 'modules.translators.encodings.auto'
 local getos = require 'getos'
 local tlib = require 'tablelib'
 
+---Removes 2 bytes from the end of string
+---@param data string
 local normalize = function (data)
 	return string.sub(data, 0, #data - 2)
 end
 
+---Handle provider invocation on windows
+---@param commonArgs table<number, string>
+---@param value string
 local windowsInkove = function (commonArgs, value)
 	-- Removing '--' due to stupid crow CLI
 	-- Passing value as stdin_data not work on windows
@@ -23,6 +29,9 @@ local windowsInkove = function (commonArgs, value)
 	return result
 end
 
+---Handle provider invocation on linux
+---@param commonArgs table<number, string>
+---@param value string
 local linuxInvoke = function (commonArgs, value)
 	table.insert(commonArgs, '-i')
 
@@ -36,15 +45,15 @@ local linuxInvoke = function (commonArgs, value)
 	return result
 end
 
+---@param data string
 local postprocess = function (data)
-	local text = normalize(data):gsub('\\ N', '\\N')
-	return text
+	return (normalize(data):gsub('\\ N', '\\N'))
 end
 
 local invoke = windowsInkove
 
-local os = getos():lower()
-if os:lower() == 'linux' then
+local os = getos()
+if os == 'Linux' then
 	normalize = function (data) return data end
 	invoke = linuxInvoke
 end
@@ -52,40 +61,37 @@ end
 ---@param from string
 ---@param to string
 return function (from, to)
-	local m = {}
 	local codepage = auto(to)
 
-	---@param value string
-	---@return string | nil
-	function m.translate(value)
-		local commonArgs = {
-			'crow',
-			'-l', from,
-			'-t', to,
-			'-b'
-		}
+	---@type TranslationProvider
+	return {
+		translate = function (value)
+			local commonArgs = {
+				'crow',
+				'-l', from,
+				'-t', to,
+				'-b',
+			}
 
-		local result = invoke(commonArgs, value)
+			local result = invoke(commonArgs, value)
 
-		if result.status ~= 0 then error(result) end
+			if result.status ~= 0 then error(result) end
 
-		local data = codepage.to_utf8(result.stdout)
+			local data = codepage.to_utf8(result.stdout)
 
-		if data == nil then
-			mp.msg.warn('[crow] Got empty response ' .. tlib.join(commonArgs, ' '))
-			return nil
-		end
+			if data == nil then
+				mp.msg.warn('[crow] Got empty response ' .. tlib.join(commonArgs, ' '))
+				return nil
+			end
 
-		return postprocess(data)
-	end
-
-	function m.get_error(err)
-		if err.status ~= nil and err.status == -3 then
-			return 'crow not reachable in path'
-		else
-			return utils.format_json(err)
-		end
-	end
-
-	return m
+			return postprocess(data)
+		end,
+		get_error = function (err)
+			if err.status ~= nil and err.status == -3 then
+				return 'crow not reachable in path'
+			else
+				return utils.format_json(err)
+			end
+		end,
+	}
 end

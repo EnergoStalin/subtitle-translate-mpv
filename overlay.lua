@@ -1,10 +1,20 @@
 local mp = require 'mp'
 local utils = require 'mp.utils'
 local tablelib = require 'tablelib'
+local logger = require 'logger' ('overlay')
+
+---@class Overlay
+---@field compute_bounds boolean
+---@field data string
+---@field hidden boolean
+---@field res_x number
+---@field res_y number
+---@field remove fun(): nil
+---@field update fun(): nil
 
 ---Split string into lines array
 ---@param text string
----@return table
+---@return table<number, string>
 local function splitLines(text)
 	local lines = {}
 	for l in string.gmatch(text, '[^\r\n]+') do
@@ -14,10 +24,13 @@ local function splitLines(text)
 	return lines
 end
 
+---@param options ScriptOptions
 return function (options)
+	---@type Overlay
 	local overlay = mp.create_osd_overlay('ass-events')
 	overlay.compute_bounds = true
 
+	---@class OverlayWrapper
 	local wrap = {
 		font = options.osdFont,
 		fontSize = options.osdFontSize,
@@ -67,7 +80,7 @@ return function (options)
 
 	function wrap:reveal()
 		overlay.hidden = false
-		mp.msg.debug('[overlay]', utils.format_json(overlay:update()), '(bounds)')
+		logger.debug(utils.format_json(overlay:update()), '(bounds)')
 	end
 
 	---@param translated string
@@ -118,7 +131,7 @@ return function (options)
 			)
 		end
 
-		mp.msg.debug('[overlay] <- ', overlay.data)
+		logger.translator_output(overlay.data)
 
 		wrap:reveal()
 	end

@@ -1,7 +1,11 @@
+---@alias MeasureFunction fun(): number
+
 ---Constructor for average value generator
 ---@param initial number
----@return table
+---@param measure MeasureFunction
+---@param sensitivity number 
 return function (initial, measure, sensitivity)
+	---@class average
 	local average = {
 		avg = initial,
 		count = 1,
@@ -10,15 +14,19 @@ return function (initial, measure, sensitivity)
 		sensitivity = sensitivity,
 	}
 
-	function average:reset(avg, measure)
+	---Reset class with new average value optionally changing measure function
+	---@see MeasureFunction
+	---@param avg number
+	---@param m MeasureFunction?
+	---@return nil
+	function average:reset(avg, m)
 		self.count = 1
 		self.avg = avg
-		self.measure = measure or self.measure
+		self.measure = m or self.measure
 	end
 
+	---@return number # Returns average time between calls
 	function average:tick()
-		if self.measure == nil then return end
-
 		if self.last ~= 0 then
 			self.avg = self.avg + self.last - self.measure()
 			self.count = self.count + 1
