@@ -1,7 +1,9 @@
-local mp = require 'mp'
+local mp = require('mp')
+local logger = require('logger')('Console-Translate')
 
 local function escape(str)
 	local s, _ = string.gsub(str, '\'', '\'\'')
+	s, _ = string.gsub(s, '’', '’’')
 	return s
 end
 
@@ -11,6 +13,15 @@ return function (from, to)
 	---@type TranslationProvider
 	return {
 		translate = function (value)
+			local command = string.format(
+				"Import-Module Console-Translate; Get-Translate -Text '%s' -LanguageSource %s -LanguageTarget %s",
+				escape(string.gsub(value, '[\r\n]', '\\n')),
+				from,
+				to
+			)
+
+			logger.debug(command)
+
 			local result = mp.command_native({
 				name = 'subprocess',
 				args = {
@@ -19,12 +30,7 @@ return function (from, to)
 					'-NonInteractive',
 					'-OutputFormat', 'Text',
 					'-Command',
-					string.format(
-						'Import-Module Console-Translate; Get-Translate -Text \'%s\' -LanguageSource %s -LanguageTarget %s',
-						escape(string.gsub(value, '[\r\n]', '\\n')),
-						from,
-						to
-					),
+					command,
 				},
 				capture_stdout = true,
 			})
