@@ -23,7 +23,7 @@ return function (provider, overlay, options)
 
 		avg:tick()
 		value = value:gsub('\\N', ' \\N '):gsub('\\n', ' \\n ')
-    logger.translator_input(value)
+		logger.translator_input(value)
 
 		local ok, data = pcall(provider.translate, value)
 		if not ok then
@@ -46,7 +46,7 @@ return function (provider, overlay, options)
 
 		overlay:setTranslation(data, value)
 		logger.debug('Applying sub-delay', -delay)
-    logger.translator_output(data)
+		logger.translator_output(data)
 	end
 
 	---@param delay number
