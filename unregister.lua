@@ -2,9 +2,9 @@ local mp = require 'mp'
 local logger = require 'logger' ('unregister')
 
 ---@param translate Translator
----@param o ScriptOptions
 ---@param overlay OverlayWrapper
-return function (translate, o, overlay)
+---@param o ScriptOptions
+return function (translate, overlay, o)
 	return function ()
 		if not o.running then return end
 

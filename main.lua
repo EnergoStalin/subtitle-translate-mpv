@@ -15,8 +15,8 @@ local translator = require 'translate' (
 	o
 )
 
-local register = require 'register' (translator, o, overlay)
-local unregister = require 'unregister' (translator, o, overlay)
+local register = require 'register' (translator, overlay, o)
+local unregister = require 'unregister' (translator, overlay, o)
 local autoEnable = require 'autoEnable' (register, unregister, o)
 
 local function updateEvents()
