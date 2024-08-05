@@ -1,5 +1,5 @@
 local path = (...):match('(.-)[^%.]+$')
-local os = require('getos')():lower()
+local mp = require('mp')
 
 ---@class Utf8Converter
 ---@field to_utf8 fun(value: string): string # Convert arbitraty encoding to utf-8
@@ -7,7 +7,7 @@ local os = require('getos')():lower()
 ---@param to string
 ---@return Utf8Converter
 return function (to)
-	if os:find('linux') then
+	if mp.get_property_native('platform') == 'linux' then
 		return require(path .. 'pass')
 	end
 

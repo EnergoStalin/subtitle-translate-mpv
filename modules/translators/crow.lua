@@ -1,7 +1,6 @@
 local mp = require 'mp'
 local utils = require 'mp.utils'
 local auto = require 'modules.translators.encodings.auto'
-local getos = require 'getos'
 local tlib = require 'tablelib'
 
 ---Removes 2 bytes from the end of string
@@ -45,18 +44,15 @@ local linuxInvoke = function (commonArgs, value)
 	return result
 end
 
----@param data string
-local postprocess = function (data)
-	return (normalize(data):gsub('\\ N', '\\N'))
-end
+local isUnix = mp.get_property_native('platform') == 'linux'
 
-local invoke = windowsInkove
-
-local os = getos()
-if os == 'Linux' then
-	normalize = function (data) return data end
-	invoke = linuxInvoke
-end
+local invoke = isUnix and linuxInvoke or windowsInkove
+local postprocess = isUnix
+	and function () return '' end
+	---@param data string
+	or function (data)
+		return (normalize(data):gsub('\\ N', '\\N'))
+	end
 
 ---@param from string
 ---@param to string
