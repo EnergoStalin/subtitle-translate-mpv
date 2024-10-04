@@ -15,7 +15,7 @@ return function (provider, overlay, options)
 	local m = {}
 
 	function m.onSubChanged()
-		local value = mp.get_property('sub-text-ass')
+		local value = mp.get_property('sub-text/ass')
 		if value == nil or value == '' then
 			overlay:hide()
 			return
