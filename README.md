@@ -33,7 +33,7 @@ git clone --depth 1 https://github.com/EnergoStalin/subtitle-translate-mpv.git
 
 ## :gear:Options
 Avalible options `~~/script-opts/<cloned_folder_name>.conf`([see mp.get_script_name()](https://mpv.io/manual/stable/#lua-scripting-mp-get-script-name())) with default values
-```conf
+```cfg
 # Initial subtitle delay for translator
 defaultDelay=-0.5
 # Which provider to use(see translators folder in repository) or Providers readme section for reference
@@ -61,7 +61,7 @@ autoEnableTranslator=yes
 sensitivity=8
 ```
 ## :receipt:Recommended input.conf
-```conf
+```cfg
 CTRL+t script-message enable-sub-translator
 CTRL+T script-message disable-sub-translator
 ALT+t script-message sub-translated-only
