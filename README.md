@@ -86,5 +86,5 @@ ALT+b script-message benchmark-sub-translator
 
     Avalible via winget
     ```powershell
-    winget install --id CrowTranslate.CrowTranslate
+    winget install --id KDE.CrowTranslate
     ```
