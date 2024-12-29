@@ -1,6 +1,12 @@
 local mp = require 'mp'
 local logger = require 'logger' ('translate')
 
+local version = require 'version'
+
+local function text_ass()
+	return mp.get_property(version.is_greater('0.38.0') and 'sub-text/ass' or 'sub-text-ass')
+end
+
 ---@class TranslationProvider
 ---@field translate fun(value: string): string | nil
 ---@field get_error fun(data: any): string
@@ -15,7 +21,7 @@ return function (provider, overlay, options)
 	local m = {}
 
 	function m.onSubChanged()
-		local value = mp.get_property('sub-text/ass')
+		local value = text_ass()
 		if value == nil or value == '' then
 			overlay:hide()
 			return
