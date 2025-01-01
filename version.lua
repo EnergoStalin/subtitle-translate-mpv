@@ -7,7 +7,7 @@ function m.split(version)
 end
 
 function m.is_greater(v2)
-	local major1, minor1, patch1 = m.split(mp.get_property('mpv-version'):match("v(%d+%.%d+%.%d+)$"))
+	local major1, minor1, patch1 = m.split(mp.get_property('mpv-version'):match("v(%d+%.%d+%.%d+)"))
 	local major2, minor2, patch2 = m.split(v2)
 
 	if major1 ~= major2 then
