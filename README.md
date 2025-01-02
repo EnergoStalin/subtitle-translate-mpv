@@ -74,7 +74,7 @@ ALT+b script-message benchmark-sub-translator
 ## Providers
 :memo: One of providers listed below should be installed and specified in translator config field
 
-- [Console-Translate](https://github.com/Lifailon/Console-Translate) see [Console-Translate.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/Console-Translate.lua) (Recommended)
+- [Console-Translate](https://github.com/Lifailon/Console-Translate) see [Console-Translate.lua](https://github.com/EnergoStalin/subutils-mpv/blob/master/modules/translators/Console-Translate.lua) (Recommended) (:warning: Support translation only of ru,en languages and vice versa [see](https://github.com/Lifailon/Console-Translate/blob/26a83cfcf9921a573fa1620d16bb1a463092ee7b/Console-Translate/0.3/Console-Translate.psm1#L29-L32))
     > :memo: Windows untested but should work
 
     Average translation time by benchmark.lua **0.4s**
