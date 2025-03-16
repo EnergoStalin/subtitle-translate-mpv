@@ -1,0 +1,35 @@
+name: 🌿 Feature request
+description: Suggest an idea for this project
+title: "[Feature]: "
+labels: enhancement
+assignees:
+  - EnergoStalin
+body:
+  - type: textarea
+    id: necessity
+    attributes:
+      label: Problem
+      description: What problem this feature will solve
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution
+      description: If you know the solution please do share
+    validations:
+      required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: What alternatives you considered? Why not use them?
+    validations:
+      required: false
+  - type: textarea
+    id: rant
+    attributes:
+      label: Rant
+      description: Additional context for consideration
+    validations:
+      required: false

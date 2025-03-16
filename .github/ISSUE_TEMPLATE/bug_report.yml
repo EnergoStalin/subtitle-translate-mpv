@@ -1,0 +1,62 @@
+name: 🐛 Bug report
+description: Create a report
+title: '[Bug]: '
+labels: bug
+assignees:
+  - EnergoStalin
+body:
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: What did go wrong and what was expected to happen instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: e.g. seek on specific time call with specific arguments
+    validations:
+      required: true
+  - type: textarea
+    id: file-caused-problems
+    attributes:
+      label: File caused problems
+      description: Drop file or link here if specific file required to reproduce the problem
+    validations:
+      required: false
+  - type: textarea
+    id: script-config
+    attributes:
+      label: Config
+      description: |
+        File from ~~/script-opts/<script_folder_name>.conf
+
+        usually `cat $HOME/.config/mpv/script-opts/subtitle-translate-mpv.conf`
+      placeholder: ~~/script-opts/<script_folder_name>.conf
+    validations:
+      required: true
+  - type: textarea
+    id: mpv-version
+    attributes:
+      label: Mpv version
+      description: mpv --version
+      placeholder: mpv v0.39.0-dirty
+    validations:
+      required: true
+  - type: textarea
+    id: mpv-log
+    attributes:
+      label: Full mpv log from errored session
+      description: |
+        mpv --msg-level=subtitle_translate_mpv=trace,osd/libass=trace file_caused_problems >& log.txt
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      placeholder: Something something...
+    validations:
+      required: false
