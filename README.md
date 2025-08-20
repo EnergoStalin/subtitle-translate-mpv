@@ -29,7 +29,7 @@ You can extend it with you favorite translator by contributing one.
 git clone --depth 1 https://github.com/EnergoStalin/subtitle-translate-mpv.git
 ```
 - Setup default settings for mpv and script itself described below
-- Install dependencies described below and make sure them accessible from path
+- Install dependencies described below and make sure they accessible from path
 
 ## :gear:Options
 Avalible options `~~/script-opts/<cloned_folder_name>.conf`([see mp.get_script_name()](https://mpv.io/manual/stable/#lua-scripting-mp-get-script-name())) with default values
