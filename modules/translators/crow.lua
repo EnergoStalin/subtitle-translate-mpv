@@ -48,7 +48,7 @@ local isUnix = mp.get_property_native('platform') == 'linux'
 
 local invoke = isUnix and linuxInvoke or windowsInkove
 local postprocess = isUnix
-	and function () return '' end
+	and function (data) return data end
 	---@param data string
 	or function (data)
 		return (normalize(data):gsub('\\ N', '\\N'))
