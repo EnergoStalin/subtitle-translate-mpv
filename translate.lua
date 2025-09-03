@@ -3,9 +3,13 @@ local logger = require 'logger' ('translate')
 
 local version = require 'version'
 
-local function text_ass()
-	return mp.get_property(version.is_greater('0.38.0') and 'sub-text/ass' or 'sub-text-ass')
+local function text_ass_pre_0_38_0()
+	return mp.get_property('sub-text-ass')
 end
+local function text_ass_post_0_38_0()
+	return mp.get_property('sub-text/ass')
+end
+local text_ass = version.is_greater('0.38.0') and text_ass_post_0_38_0 or text_ass_pre_0_38_0
 
 ---@class TranslationProvider
 ---@field translate fun(value: string): string | nil
