@@ -17,7 +17,7 @@ local windowsInkove = function (commonArgs, value)
 	-- Passing value as stdin_data not work on windows
 	local escaped = value:gsub('--', '')
 
-	table.insert(commonArgs, escaped)
+	commonArgs[#commonArgs+1] = escaped
 
 	local result = mp.command_native({
 		name = 'subprocess',
@@ -32,7 +32,7 @@ end
 ---@param commonArgs table<number, string>
 ---@param value string
 local linuxInvoke = function (commonArgs, value)
-	table.insert(commonArgs, '-i')
+	commonArgs[#commonArgs+1] = '-i'
 
 	local result = mp.command_native({
 		name = 'subprocess',

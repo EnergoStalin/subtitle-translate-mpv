@@ -18,7 +18,7 @@ local logger = require 'logger' ('overlay')
 local function splitLines(text)
 	local lines = {}
 	for l in string.gmatch(text, '[^\r\n]+') do
-		table.insert(lines, l)
+		lines[#lines+1] = l
 	end
 
 	return lines
@@ -121,7 +121,7 @@ return function (options)
 
 				-- Idk where \n appears but let's just remove it here
 				l = string.gsub(l, '[\r\n]+', '')
-				table.insert(mergedLines, l)
+				mergedLines[#mergedLines+1] = l
 			end
 
 			overlay.data = tablelib.join(mergedLines, '\n')

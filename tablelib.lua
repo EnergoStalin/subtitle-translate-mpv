@@ -6,7 +6,19 @@ local m = {}
 function m.filter(list, pred)
 	local res = {}
 	for _, item in ipairs(list) do
-		if pred(item) then table.insert(res, item) end
+		if pred(item) then res[#res + 1] = item end
+	end
+
+	return res
+end
+
+---@param list table
+---@param pred fun(item: any): any
+---@return table
+function m.map(list, pred)
+	local res = {}
+	for _, item in ipairs(list) do
+		res[#res+1] = pred(item)
 	end
 
 	return res
