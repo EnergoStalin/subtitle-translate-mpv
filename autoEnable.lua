@@ -16,7 +16,7 @@ return function (register, unregister, options)
 		end
 
 		local tracks = mp.get_property_native('track-list', {})
-		logger.trace('tracks', utils.format_json(tracks))
+		logger.trace('tracks', function() return utils.format_json(tracks) end)
 		local subs = tablelib.filter(tracks, function (track)
 			return track.type == 'sub'
 		end)

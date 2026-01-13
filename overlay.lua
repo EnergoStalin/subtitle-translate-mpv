@@ -80,7 +80,8 @@ return function (options)
 
 	function wrap:reveal()
 		overlay.hidden = false
-		logger.debug(utils.format_json(overlay:update()), '(bounds)')
+		local data = overlay:update()
+		logger.trace(function() return utils.format_json(data) end, '(bounds)')
 	end
 
 	---@param translated string
